@@ -6,6 +6,7 @@ import MoviesListContainer from "../Containers/MovieList/MovieListContainer";
 import SearchListContainer from "../Containers/MovieList/SearchListContainer";
 import GenreContainer from "../Containers/GenreContainer";
 import GenreListContainer from "../Containers/MovieList/GenreListContainer";
+import FavoriteListContainer from "../Containers/MovieList/FavoriteListContainer";
 import MoviePageContainer from "../Containers/MoviePageContainer";
 import CreditsContainer from "../Containers/CreditsContainer";
 import { GlobalStyle, MainWrapper } from "./Style";
@@ -40,6 +41,9 @@ const App: React.FunctionComponent = () => {
           <Route path={ROUTES.GENRES_LIST_MOVIES}>
             <GenreContainer />
             <GenreListContainer />
+          </Route>
+          <Route path={ROUTES.FAVORITE_LIST_MOVIES}>
+            <FavoriteListContainer />
           </Route>
         </Switch>
       </MainWrapper>

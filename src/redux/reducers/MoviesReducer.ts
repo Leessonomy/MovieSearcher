@@ -1,22 +1,27 @@
 import { movieAPI } from "../../api/Api";
 import genres from "../../constants/genreList";
 
-const GET_MOVIES = "GET_MOVIES";
-const GET_SEARCH_MOVIES = "GET_SEARCH_MOVIES";
-const GET_TEXT = "GET_TEXT";
 const GET_MOVIE = "GET_MOVIE";
+const GET_MOVIES = "GET_MOVIES";
+const GET_SEARCHING_MOVIES = "GET_SEARCHING_MOVIES";
+const GET_TEXT = "GET_TEXT";
 const GET_SIMILAR_MOVIES = "GET_SIMILAR_MOVIES";
 const GET_GENRE = "GET_GENRE";
-const GET_MOVIE_WITH_GENRE = "GET_MOVIE_WITH_GENRE";
 const DELETE_GENRE = "DELETE_GENRE";
+const GET_MOVIE_WITH_GENRE = "GET_MOVIE_WITH_GENRE";
 const GET_GALLERY = "GET_GALLERY";
 const GET_TOTAL_PAGES = "GET_TOTAL_RESULTS";
+const GET_FAVORITE_LIST = "GET_FAVORITE_LIST";
+const ADD_FAVORITE_LIST = "ADD_FAVORITE_LIST";
+const DELETE_FAVORITE_LIST = "DELETE_FAVORITE_LIST";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
+
 let initialState = {
-  movies: [],
   movie: [],
+  movies: [],
   similarMovies: [],
+  favoriteMovies: [],
   gallery: [],
   page: 1,
   totalPages: 0,
@@ -36,7 +41,7 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         movies: [...action.movies]
       };
-    case GET_SEARCH_MOVIES:
+    case GET_SEARCHING_MOVIES:
       return {
         ...state,
         movies: [...action.movies]
@@ -97,6 +102,28 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching
       };
+      case GET_FAVORITE_LIST: {
+          let getSavedList = JSON.parse(localStorage.getItem('favoriteList'));
+          console.log(getSavedList);
+          return {
+            ...state,
+            favoriteMovies: getSavedList || state.favoriteMovies
+          }
+        };
+      case ADD_FAVORITE_LIST:
+      console.log(action.favorite);
+      return {
+        ...state,
+        favoriteMovies: state.favoriteMovies.concat(action.favorite)
+      };
+
+      case DELETE_FAVORITE_LIST:
+      return {
+        ...state,
+        favoriteMovies: state.favoriteMovies.filter(movie =>
+          movie.id !== action.id
+        )
+      };
     default:
       return state;
   }
@@ -111,12 +138,17 @@ export const getGallery = gallery => ({ type: GET_GALLERY, gallery });
 ///
 export const getMoviesSucces = movies => ({ type: GET_MOVIES, movies });
 export const getMoviesWithGenreSucces = movies => ({ type: GET_MOVIE_WITH_GENRE, movies });
-export const getSearchSucces = movies => ({ type: GET_SEARCH_MOVIES, movies });
+export const getSearchingSucces = movies => ({ type: GET_SEARCHING_MOVIES, movies });
 ///
 export const getSearchText = text => dispatch => dispatch({ type: GET_TEXT, text });
 export const getTotalPages = totalPages => ({ type: GET_TOTAL_PAGES, totalPages });
 ///
 export const setIsFetching = isFetching => ({ type: TOGGLE_IS_FETCHING, isFetching });
+///
+export const getFavorites = () => ({ type: GET_FAVORITE_LIST });
+export const addFavorites = favorite => ({ type: ADD_FAVORITE_LIST, favorite });
+export const deleteFavorites = id => ({ type: DELETE_FAVORITE_LIST, id });
+
 
 
 

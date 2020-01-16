@@ -8,6 +8,7 @@ import {
 } from "./Style";
 import SearchContainer from "../Containers/SearchContainer";
 import Home from "../Home/Home";
+import Favorite from "../Favorite/Favorite";
 import magnifierImg from '../../img/search.svg'
 
 
@@ -17,6 +18,7 @@ const Header = () => (
       <FieldWrapper>
         <SearchContainer />
         <Home />
+        <Favorite/>
       </FieldWrapper>
       <ImageWrapper>
         <SearchImage src={magnifierImg} />

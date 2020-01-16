@@ -26,6 +26,7 @@ import {
   ImageWrapper,
   TitleSimilarMovies
 } from "./Style";
+import FavoriteBtn from "../Containers/FavoriteBtn"
 import { Link, withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 import SimilarMovies from "../SimilarMovies/SimilarMovies";
@@ -71,7 +72,8 @@ const MoviePage = ({
   similarMovies,
   gallery,
 }: MoviePageProps & RouteComponentProps) => {
-
+  let sortedOverview = toString(overview).length > 360 ? overview.slice(0, 360) + "..." : overview;
+  console.log(sortedOverview);
   const id = match.params.id;
   return (
     <MoviePageWrapper>
@@ -86,6 +88,7 @@ const MoviePage = ({
               src={`https://image.tmdb.org/t/p/w342${imageURL}`}
             />
           </ImageWrapper>
+          <FavoriteBtn id={id} imageURL={imageURL} overwiev={sortedOverview} raiting={raiting} title={title}/>
         </MoviePagePoster>
         <MovieDescription>
           <HeadDescription>

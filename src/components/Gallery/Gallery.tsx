@@ -81,9 +81,7 @@ class Gallery extends React.Component<RouteComponentProps & GalleryProps, Galler
       --counterImage;
     }
     this.setState({ indexImage: counterImage }, () => {
-      this.props.history.push(
-        `/movie/${this.props.match.params.id}?image=${this.state.indexImage}`
-      );
+      this.props.history.push(`/movie/${this.props.match.params.id}?image=${this.state.indexImage}`);
     });
   };
 

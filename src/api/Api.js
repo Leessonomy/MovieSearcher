@@ -9,19 +9,13 @@ const instance = axios.create({
 export const movieAPI = {
   searchMovie(page, text) {
     return instance
-      .get(
-        `search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=true&query=${text}`
-      )
-      .then(res => {
+      .get(`search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=true&query=${text}`).then(res => {
         console.log(res);
         return res.data;
       });
   },
   getSearchMovieSortGanre(page, genres) {
-    return instance
-      .get(
-        `discover/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=true&with_genres=${genres}`
-      )
+    return instance.get(`discover/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=true&with_genres=${genres}`)
       .then(res => {
         console.log(res);
         return res.data;
@@ -39,9 +33,7 @@ export const movieAPI = {
 
   getMoviePage(id) {
     return instance
-      .get(
-        `movie/${id}?api_key=${API_KEY}&append_to_response=credits&language=en-US`
-      )
+      .get(`movie/${id}?api_key=${API_KEY}&append_to_response=credits&language=en-US`)
       .then(res => {
         console.log(res);
         return res.data;
@@ -70,5 +62,7 @@ export const movieAPI = {
       console.log(res);
       return res.data.backdrops;
     });
-  }
+  },
+
+
 };
