@@ -1,4 +1,5 @@
 import React from "react";
+import { GlobalStyle, MainWrapper } from "./Style";
 import { Route, Switch, withRouter } from "react-router-dom";
 import ROUTES from "../../constants/routes";
 import Header from "../Header/header";
@@ -9,7 +10,6 @@ import GenreListContainer from "../Containers/MovieList/GenreListContainer";
 import FavoriteListContainer from "../Containers/MovieList/FavoriteListContainer";
 import MoviePageContainer from "../Containers/MoviePageContainer";
 import CreditsContainer from "../Containers/CreditsContainer";
-import { GlobalStyle, MainWrapper } from "./Style";
 import ScrollToTopRoute from "../../hoc/ScrollTop";
 
 const App: React.FunctionComponent = () => {

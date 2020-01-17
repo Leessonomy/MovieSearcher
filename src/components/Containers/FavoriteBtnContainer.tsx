@@ -5,7 +5,7 @@ import {
     deleteFavorites,
     getFavorites
   } from "../../redux/reducers/MoviesReducer";
-
+  import FavoriteBtn from "../Links&Buttons/FavoriteBtn/FavoriteBtn";
 
 interface FavoriteButtonProps {
   id: number | string, 
@@ -18,7 +18,7 @@ interface FavoriteButtonProps {
   deleteFavorites: (id: number | string) => void;
 }
 
-class FavoriteButton extends React.Component<FavoriteButtonProps> {
+class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
 
   componentDidUpdate(prevProps) {
     if (this.props.favoriteMovies !== prevProps.favoriteMovies) {
@@ -57,8 +57,8 @@ class FavoriteButton extends React.Component<FavoriteButtonProps> {
   render() {
     const toggleText = this.checked();
     return(
-      <button onClick={this.handlerClick}>{toggleText ? 'Delete Favorite List': 'Add Favorite List'}</button>
-        )
+      <FavoriteBtn toggleText={toggleText} handlerClick={this.handlerClick} />      
+      )
       }
 }
 
@@ -70,4 +70,4 @@ const mapStateToProps = state => ({
   });
   
 
-export default connect(mapStateToProps, {getFavorites: getFavorites, addFavorites: addFavorites, deleteFavorites: deleteFavorites})(FavoriteButton);
+export default connect(mapStateToProps, {getFavorites: getFavorites, addFavorites: addFavorites, deleteFavorites: deleteFavorites})(FavoriteButtonContainer);

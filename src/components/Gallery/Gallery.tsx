@@ -57,14 +57,12 @@ class Gallery extends React.Component<RouteComponentProps & GalleryProps, Galler
   };
 
   closeImage = () => {
-    this.setState(
-      {
+    this.setState({
         isOpen: false
       },
       () => {
         this.props.history.push(`/movie/${this.props.match.params.id}`);
-      }
-    );
+      });
   };
 
   openImage = () => {
