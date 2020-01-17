@@ -17,6 +17,10 @@ export function fontFace(fontWeight = "normal", fontStyle = "normal") {
 }
 
 export const GlobalStyle = createGlobalStyle`
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration { display: none; }
 ${fontFace("normal", "normal")}
   body {
     margin: 0; padding: 0; 

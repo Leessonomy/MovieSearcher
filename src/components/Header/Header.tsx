@@ -4,7 +4,8 @@ import {
   FieldContainer,
   FieldWrapper,
   ImageWrapper,
-  SearchImage
+  SearchImage,
+  LinksWrapper
 } from "./Style";
 import SearchContainer from "../Containers/SearchContainer";
 import FavoritePage from "../Links&Buttons/FavoriteLink/FavoritePage";
@@ -17,13 +18,14 @@ const Header = () => (
     <FieldContainer>
       <FieldWrapper>
         <SearchContainer />
-        <HomePage />
-        <FavoritePage />
       </FieldWrapper>
       <ImageWrapper>
         <SearchImage src={magnifierImg} />
       </ImageWrapper>
     </FieldContainer>
+    <LinksWrapper>
+  <FavoritePage />
+  </LinksWrapper>
   </HeaderContainer>
 );
 

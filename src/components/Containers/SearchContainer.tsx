@@ -28,7 +28,7 @@ const SearchContainer = ({
     if (!mounted.current) {
       mounted.current = true;
     } else {
-      if (location.pathname.slice(0, 7) == "/movie/") {
+      if (location.pathname.slice(0, 7) == "/movie/" || location.pathname.slice(0, 9) == "/favorite") {
         el.style.position = "static";
       }
       if (location.pathname == "/") {

@@ -6,10 +6,9 @@ interface ScrollToTopRouteProps {
   location: any,
   RouteKey?: boolean,
   component: any
-  path: string,
-  exact?: boolean
 }
-
+/*  path: string,
+  exact?: boolean*/
 class ScrollToTopRoute extends Component<ScrollToTopRouteProps & RouteComponentProps> {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {

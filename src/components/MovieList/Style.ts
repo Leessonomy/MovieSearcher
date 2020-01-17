@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const MainPageContainer = styled.div`
     display: flex;
-    width: 86%;
+    width: 100%;
     justify-content: center;
     @media (max-width: 720px) {
         margin-left: 19%;
@@ -19,8 +19,8 @@ const MoviesWrapper = styled.div`
 
 const MovieCardContainer = styled.div`
   margin-top: 33px;
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 25px;
+  margin-left: 25px;
   width: 186px;
   height: 346px;
   width: 390px;
@@ -32,6 +32,7 @@ const MovieCardContainer = styled.div`
   font-family: Segoe;
   display: flex;
   flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   flex-direction: column;
   position: relative;
   @media (max-width: 1024px) {
