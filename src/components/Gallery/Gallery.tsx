@@ -13,27 +13,25 @@ import PreloaderGallery from "../Common/Preloader/PreloaderGallery";
 import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 
-
-
-
 interface GalleryProps {
-  match: any,
-  history: any,
-  imageURL: string,
-  galleryDesktop: string[],
-  galleryMobile: string[],
-  order: number
+  match: any;
+  history: any;
+  imageURL: string;
+  galleryDesktop: string[];
+  galleryMobile: string[];
+  order: number;
 }
-
 
 interface GalleryState {
-  isOpen: boolean,
-  loaded: boolean,
-  indexImage: any
+  isOpen: boolean;
+  loaded: boolean;
+  indexImage: any;
 }
 
-
-class Gallery extends React.Component<RouteComponentProps & GalleryProps, GalleryState> {
+class Gallery extends React.Component<
+  RouteComponentProps & GalleryProps,
+  GalleryState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,22 +45,25 @@ class Gallery extends React.Component<RouteComponentProps & GalleryProps, Galler
     let gettingIndex = e.currentTarget.getAttribute("data-index");
     let convertedIndex = Number(gettingIndex);
 
-      this.setState({indexImage: convertedIndex}, () => {
-        this.setState((prevState) => ({
+    this.setState({ indexImage: convertedIndex }, () => {
+      this.setState(prevState => ({
         indexImage: prevState.indexImage
-        })
-      )
-    })
-    this.props.history.push(`/movie/${this.props.match.params.id}?image=${convertedIndex}`)
+      }));
+    });
+    this.props.history.push(
+      `/movie/${this.props.match.params.id}?image=${convertedIndex}`
+    );
   };
 
   closeImage = () => {
-    this.setState({
+    this.setState(
+      {
         isOpen: false
       },
       () => {
         this.props.history.push(`/movie/${this.props.match.params.id}`);
-      });
+      }
+    );
   };
 
   openImage = () => {
@@ -79,7 +80,9 @@ class Gallery extends React.Component<RouteComponentProps & GalleryProps, Galler
       --counterImage;
     }
     this.setState({ indexImage: counterImage }, () => {
-      this.props.history.push(`/movie/${this.props.match.params.id}?image=${this.state.indexImage}`);
+      this.props.history.push(
+        `/movie/${this.props.match.params.id}?image=${this.state.indexImage}`
+      );
     });
   };
 
@@ -90,16 +93,17 @@ class Gallery extends React.Component<RouteComponentProps & GalleryProps, Galler
   render() {
     const { imageURL } = this.props;
     const { loaded } = this.state;
-    let galleryDisabledNextBtn = this.props.galleryDesktop.length - 1 > this.state.indexImage ? false : true;
+    let galleryDisabledNextBtn =
+      this.props.galleryDesktop.length - 1 > this.state.indexImage
+        ? false
+        : true;
     let galleryDisabledPrevBtn = this.state.indexImage > 0 ? false : true;
     return (
       <>
-        <ImageWrapper
-                   onClick={this.openImage}
-        >
+        <ImageWrapper onClick={this.openImage}>
           <PreviewImages
-                    onClick={this.handlerClickOpen}
-                    data-index={this.props.order}
+            onClick={this.handlerClickOpen}
+            data-index={this.props.order}
             src={`https://image.tmdb.org/t/p/w185${imageURL}`}
             alt=""
           />

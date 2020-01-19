@@ -27,15 +27,15 @@ ${fontFace("normal", "normal")}
     box-sizing: border-box;
     margin: 0 auto;
     overflow-x: hidden;
-    @media (min-width: 320px) {
-      min-width: 320px;
-      margin: 0 auto;
+
+    @media (min-width: 320px) and (max-width: 767px){
+      min-width: 360px;
   }
-    @media (min-width: 768px) {
+    @media (min-width: 768px ) {
     min-width: 768px;
-    margin: 0 auto;
 }
-  }
+
+}
 `;
 
 export const MainWrapper = styled.div`

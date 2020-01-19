@@ -6,7 +6,7 @@ const ROUTES = {
   FILM_PAGE: "/movie/",
   FILM_PAGE_DETAIL: "/movie/:id",
   PAGE_CAST: "/cast/",
-  FILM_PAGE_CAST: "/movie/:id/" + "cast"
+  FILM_PAGE_CAST: "/movie/:id/cast/"
 };
 
 export default ROUTES;

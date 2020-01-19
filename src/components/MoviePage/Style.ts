@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const MoviePageWrapper = styled.div`
   min-width: 320px;
-  max-width: 320px;
-  width: 320px;
+  width: 360px;
   margin: 0 auto;
    @media (min-width: 768px) {
     max-width: 768px;
@@ -41,6 +40,7 @@ const MoviePageContainer = styled.article`
   @media (max-width: 768px) {
     margin-left: 0;
     margin: 0 auto;
+    width: 100%
   }
 `;
 const MoviePagePoster = styled.div`
@@ -52,9 +52,8 @@ const MoviePagePoster = styled.div`
 
 const ImageWrapper = styled.div`
   width: auto;
-  @media (max-width: 760px) {
-    width: 100%;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 const GenreList = styled.div`
@@ -140,7 +139,7 @@ const InfoField = styled.div`
   font-size: 17px;
   flex-basis: 49%;
   flex-grow: 1;
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     font-size: 14px;
     height: 100%;
   }
@@ -211,7 +210,7 @@ padding: 5px 10px;
 border: 5px solid #0e6179;
 height: auto;
 margin-top: 18px;
-@media (max-width: 760px) {
+@media (max-width: 768px) {
     margin: 24px 0;
 }
 }

@@ -19,21 +19,29 @@ const FieldContainer = styled.div`
 `;
 const FieldWrapper = styled.div`
   display: block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const LinksWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    padding-left: calc(50% - 170px);
-    text-transform: uppercase;
-`
+  display: flex;
+  align-items: center;
+  padding-left: calc(50% - 140px);
+  text-transform: uppercase;
+  justify-content: center;
+  width: 100%;
+  @media (max-width: 1144px) {
+    padding-left: calc(50% - 195px);
+  }
+`;
 
 const FindField = styled.input`
   background-color: #fff;
   height: 30px;
   width: 361px;
   padding-left: 6px;
+  @media (max-width: 767px) {
+    width: 214px;
+  }
 `;
 const ImageWrapper = styled.div`
   min-width: 0;
@@ -48,6 +56,9 @@ const SearchImage = styled.img`
   top: -12px;
   cursor: pointer;
   left: 331px;
+  @media (max-width: 767px) {
+    left: 187px;
+  }
 `;
 
 export {

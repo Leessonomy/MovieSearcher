@@ -3,13 +3,15 @@ import {
   Genre,
   GenreWrapper,
   GenreList,
-  GenresFormsList
+  GenresFormsList,
+  GenreName
 } from "../Genre/style";
 import { connect } from "react-redux";
 import {
   requestSearchingMoviesByGenre,
   addGenreSucces,
   deleteGenreSucces,
+  clearGenres
 } from "../../redux/reducers/MoviesReducer";
 import { withRouter } from "react-router-dom";
 
@@ -17,8 +19,8 @@ interface GenresProps {
   genresId: string[];
   genres: [];
   genreList: string;
-  history: any,
-  location: any,
+  history: any;
+  location: any;
   addGenreSucces: (selected: string) => boolean;
   deleteGenreSucces: (selected: string) => boolean;
   requestSearchingMoviesByGenre: (selected: string) => boolean;
@@ -37,16 +39,17 @@ class GenreContainer extends React.Component<GenresProps> {
 
     if (e.target.checked) {
       addGenreSucces(selected);
-    }
-    if (!e.target.checked) {
+    } else if (!e.target.checked) {
       deleteGenreSucces(selected);
     }
+
     if (genresId.length > 0) {
       this.props.history.push(`/genres?=${genresId}`);
     } else if (genresId.length === 0) {
       this.props.history.push(`/`);
     }
 
+    console.log(genresId);
     return requestSearchingMoviesByGenre(1, genresId);
   };
 
@@ -61,7 +64,9 @@ class GenreContainer extends React.Component<GenresProps> {
           id={genre.name}
           type="checkbox"
         />
-        <GenresFormsList htmlFor={genre.name}>{genre.name}</GenresFormsList>
+        <GenresFormsList htmlFor={genre.name}>
+          <GenreName>{genre.name}</GenreName>
+        </GenresFormsList>
       </GenreList>
     ));
     return <GenreWrapper>{genreList}</GenreWrapper>;
@@ -75,13 +80,15 @@ let mapStateToProps = state => ({
   page: state.movies.page,
   addGenreSucces: addGenreSucces(state),
   deleteGenreSucces: deleteGenreSucces(state),
-  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state)
+  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state),
+  clearGenres: clearGenres(state)
 });
 
 export default withRouter(
   connect(mapStateToProps, {
     requestSearchingMoviesByGenre: requestSearchingMoviesByGenre,
     addGenreSucces: addGenreSucces,
-    deleteGenreSucces: deleteGenreSucces
+    deleteGenreSucces: deleteGenreSucces,
+    clearGenres: clearGenres
   })(GenreContainer)
 );

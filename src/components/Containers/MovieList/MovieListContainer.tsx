@@ -9,10 +9,10 @@ import { withRouter } from "react-router-dom";
 
 interface MoviesContainerProps {
   location: object;
-  totalPages: number,
-  isFetching: boolean,
-  movies: any[],
-  history: any,
+  totalPages: number;
+  isFetching: boolean;
+  movies: any[];
+  history: any;
   requestMovies: (page: number) => void;
 }
 
@@ -20,7 +20,10 @@ interface StateType {
   currentPage: number;
 }
 
-class MoviesListContainer extends React.Component<MoviesContainerProps, StateType> {
+class MoviesListContainer extends React.Component<
+  MoviesContainerProps,
+  StateType
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +40,7 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
     window.removeEventListener("keydown", this.navKeyboard);
   }
 
-   handlerTransition = (type: string) => {
+  handlerTransition = (type: string) => {
     let counterPage = this.state.currentPage;
     if (type === "next") {
       ++counterPage;
@@ -47,7 +50,7 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
     this.setState({ currentPage: counterPage }, () => {
       this.props.requestMovies(this.state.currentPage);
     });
-    this.props.history.push(`/page=${this.state.currentPage}`)
+    this.props.history.push(`/page=${this.state.currentPage}`);
   };
 
   navKeyboard = (e: KeyboardEvent) => {
@@ -113,6 +116,8 @@ const mapStateToProps = state => ({
   requestMovies: requestMovies(state)
 });
 
-export default withRouter(connect(mapStateToProps, { requestMovies: requestMovies })(
-  MoviesListContainer
-));
+export default withRouter(
+  connect(mapStateToProps, { requestMovies: requestMovies })(
+    MoviesListContainer
+  )
+);

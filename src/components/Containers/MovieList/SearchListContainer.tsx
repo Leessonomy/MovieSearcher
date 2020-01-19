@@ -9,18 +9,21 @@ import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 
 interface SearchListContainerProps {
   location: object;
-  text: string,
-  totalPages: number,
-  isFetching: boolean,
-  movies: any[],
-  requestSearchingMovies: (currentPage: number, text: string) => void
+  text: string;
+  totalPages: number;
+  isFetching: boolean;
+  movies: any[];
+  requestSearchingMovies: (currentPage: number, text: string) => void;
 }
 
 interface StateType {
-  currentPage: number
+  currentPage: number;
 }
 
-class SearchListContainer extends React.Component<SearchListContainerProps, StateType> {
+class SearchListContainer extends React.Component<
+  SearchListContainerProps,
+  StateType
+> {
   static initialState: StateType = {
     currentPage: 1
   };
@@ -55,7 +58,10 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
       --counterPage;
     }
     this.setState({ currentPage: counterPage }, () => {
-      this.props.requestSearchingMovies(this.state.currentPage, this.props.text);
+      this.props.requestSearchingMovies(
+        this.state.currentPage,
+        this.props.text
+      );
     });
   };
 

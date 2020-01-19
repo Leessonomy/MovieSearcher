@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
+import { StyleBtn } from "./Style";
 
-
-const FavoriteBtn = ({toggleText, handlerClick}) => (
-    <div>
-    <button onClick={handlerClick}>{toggleText ? 'Delete Favorite List': 'Add Favorite List'}</button>
-    </div>
-)
+const FavoriteBtn = ({ toggleText, handlerClick }) => (
+  <div>
+    <StyleBtn onClick={handlerClick}>
+      {toggleText ? "Delete to favorite list" : "Add to favorite list"}
+    </StyleBtn>
+  </div>
+);
 
 export default FavoriteBtn;

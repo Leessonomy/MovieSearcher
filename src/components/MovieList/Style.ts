@@ -4,9 +4,6 @@ const MainPageContainer = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    @media (max-width: 720px) {
-        margin-left: 19%;
-    }
 }
 `;
 
@@ -15,6 +12,9 @@ const MoviesWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
+  @media (max-width: 767px) {
+    margin-top: 190px;
+  }
 `;
 
 const MovieCardContainer = styled.div`
@@ -32,19 +32,19 @@ const MovieCardContainer = styled.div`
   font-family: Segoe;
   display: flex;
   flex-wrap: wrap;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   flex-direction: column;
   position: relative;
-  @media (max-width: 1024px) {
-    margin-left: 25px;
-    margin-right: 25px;
-    height: 346px;
-    width: 370px;
+
+  @media (max-width: 1144px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 340px;
+    width: 340px;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     height: 332px;
-    width: 290px;
     margin-left: 15px;
     margin-right: 15px;
   }
@@ -53,7 +53,7 @@ const MovieCardContainer = styled.div`
 const PreviewContainer = styled.div`
   font-size: 14px;
   padding-left: 18px;
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     font-size: 12px;
     padding-left: 6px;
   }
@@ -64,18 +64,18 @@ const MovieTitle = styled.h4`
   width: 170px;
   text-align: center;
   margin: auto;
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     width: 110px;
   }
 `;
 const Overview = styled.p`
   width: 183px;
   word-wrap: break-word;
-  @media (max-width: 1024px) {
+  @media (max-width: 1144px) {
     width: 166px;
     height: 100%;
   }
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     width: 128px;
   }
 `;
@@ -92,7 +92,7 @@ const Votes = styled.p`
   position: absolute;
   right: calc(91% - 10px);
   top: 279px;
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     right: calc(89% - 10px);
     top: 254px;
   }

@@ -10,8 +10,7 @@ import {
 import SearchContainer from "../Containers/SearchContainer";
 import FavoritePage from "../Links&Buttons/FavoriteLink/FavoritePage";
 import HomePage from "../Links&Buttons/HomeLink/HomePage";
-import magnifierImg from '../../img/search.svg'
-
+import magnifierImg from "../../img/search.svg";
 
 const Header = () => (
   <HeaderContainer>
@@ -24,8 +23,9 @@ const Header = () => (
       </ImageWrapper>
     </FieldContainer>
     <LinksWrapper>
-  <FavoritePage />
-  </LinksWrapper>
+      <HomePage />
+      <FavoritePage />
+    </LinksWrapper>
   </HeaderContainer>
 );
 

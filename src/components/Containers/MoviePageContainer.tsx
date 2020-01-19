@@ -5,17 +5,18 @@ import {
   requestMoviePage,
   requestSimilarMovies,
   requestGallery,
-  setIsFetching
+  setIsFetching,
+  clearGenres
 } from "../../redux/reducers/MoviesReducer";
 import { withRouter } from "react-router-dom";
 import PreloaderMovies from "../Common/Preloader/PreloaderMovies";
 
 interface MoviePageProps {
-  movie: any[],
-  gallery: any[],
-  isFetching: boolean,
-  match: any,
-  similarMovies: any[],
+  movie: any[];
+  gallery: any[];
+  isFetching: boolean;
+  match: any;
+  similarMovies: any[];
   requestMoviePage: (id: number) => void;
   requestSimilarMovies: (id: number) => void;
   requestGallery: (id: number) => void;
@@ -33,6 +34,7 @@ class MoviePageContainer extends React.Component<MoviePageProps> {
     requestSimilarMovies(match.params.id);
     requestGallery(match.params.id);
   }
+
   render() {
     let { movie, similarMovies, gallery } = this.props;
     console.log(movie);
@@ -71,7 +73,8 @@ const mapStateToProps = state => ({
   similarMovies: state.movies.similarMovies.slice(0, 5),
   requestSimilarMovies: requestSimilarMovies(state),
   requestGallery: requestGallery(state),
-  requestMoviePage: requestMoviePage(state)
+  requestMoviePage: requestMoviePage(state),
+  clearGenres: clearGenres(state)
 });
 
 export default withRouter(
@@ -79,6 +82,7 @@ export default withRouter(
     setIsFetching: setIsFetching,
     requestMoviePage: requestMoviePage,
     requestSimilarMovies: requestSimilarMovies,
-    requestGallery: requestGallery
+    requestGallery: requestGallery,
+    clearGenres: clearGenres
   })(MoviePageContainer)
 );

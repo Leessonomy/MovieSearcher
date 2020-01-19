@@ -14,8 +14,8 @@ const GET_TOTAL_PAGES = "GET_TOTAL_RESULTS";
 const GET_FAVORITE_LIST = "GET_FAVORITE_LIST";
 const ADD_FAVORITE_LIST = "ADD_FAVORITE_LIST";
 const DELETE_FAVORITE_LIST = "DELETE_FAVORITE_LIST";
+const CLEAR_GENRES = "CLEAR_GENRES";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-
 
 let initialState = {
   movie: [],
@@ -102,27 +102,30 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching
       };
-      case GET_FAVORITE_LIST: {
-          let getSavedList = JSON.parse(localStorage.getItem('favoriteList'));
-          console.log(getSavedList);
-          return {
-            ...state,
-            favoriteMovies: getSavedList || state.favoriteMovies
-          }
-        };
-      case ADD_FAVORITE_LIST:
+    case GET_FAVORITE_LIST: {
+      let getSavedList = JSON.parse(localStorage.getItem("favoriteList"));
+      console.log(getSavedList);
+      return {
+        ...state,
+        favoriteMovies: getSavedList || state.favoriteMovies
+      };
+    }
+    case ADD_FAVORITE_LIST:
       console.log(action.favorite);
       return {
         ...state,
         favoriteMovies: state.favoriteMovies.concat(action.favorite)
       };
 
-      case DELETE_FAVORITE_LIST:
+    case DELETE_FAVORITE_LIST:
       return {
         ...state,
-        favoriteMovies: state.favoriteMovies.filter(movie =>
-          movie.id !== action.id
-        )
+        favoriteMovies: state.favoriteMovies.filter(movie => movie.id !== action.id)
+      };
+    case CLEAR_GENRES:
+      return {
+        ...state,
+        genresId: []
       };
     default:
       return state;
@@ -131,6 +134,7 @@ const moviesReducer = (state = initialState, action) => {
 
 export const addGenreSucces = genre => ({ type: GET_GENRE, genre });
 export const deleteGenreSucces = genre => ({ type: DELETE_GENRE, genre });
+export const clearGenres = () => ({ type: CLEAR_GENRES, genres });
 ///
 export const getMoviePageSucces = movie => ({ type: GET_MOVIE, movie });
 export const getSimilarMovies = similarMovies => ({ type: GET_SIMILAR_MOVIES, similarMovies });
@@ -148,8 +152,6 @@ export const setIsFetching = isFetching => ({ type: TOGGLE_IS_FETCHING, isFetchi
 export const getFavorites = () => ({ type: GET_FAVORITE_LIST });
 export const addFavorites = favorite => ({ type: ADD_FAVORITE_LIST, favorite });
 export const deleteFavorites = id => ({ type: DELETE_FAVORITE_LIST, id });
-
-
 
 
 export const requestMoviePage = id => {

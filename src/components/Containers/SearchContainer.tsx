@@ -19,7 +19,7 @@ const SearchContainer = ({
   getSearchText,
   requestSearchingMovies,
   history,
-  location,
+  location
 }: SearchProps & RouteProps) => {
   const mounted = useRef<boolean>(false);
 
@@ -28,7 +28,7 @@ const SearchContainer = ({
     if (!mounted.current) {
       mounted.current = true;
     } else {
-      if (location.pathname.slice(0, 7) == "/movie/" || location.pathname.slice(0, 9) == "/favorite") {
+      if (location.pathname.slice(0, 7) == "/movie/") {
         el.style.position = "static";
       }
       if (location.pathname == "/") {

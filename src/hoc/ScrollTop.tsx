@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { withRouter, Route, RouteComponentProps } from "react-router-dom";
 
-
 interface ScrollToTopRouteProps {
-  location: any,
-  RouteKey?: boolean,
-  component: any
+  location: any;
+  RouteKey?: boolean;
+  component: any;
 }
-/*  path: string,
-  exact?: boolean*/
-class ScrollToTopRoute extends Component<ScrollToTopRouteProps & RouteComponentProps> {
+
+class ScrollToTopRoute extends Component<
+  ScrollToTopRouteProps & RouteComponentProps
+> {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0);

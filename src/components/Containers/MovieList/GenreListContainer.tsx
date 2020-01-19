@@ -8,12 +8,12 @@ import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import { withRouter } from "react-router-dom";
 
 interface GenreListContainerProps {
-  genresId: number[],
+  genresId: number[];
   location: object;
-  totalPages: number,
-  isFetching: boolean,
-  history: any,
-  movies: any[],
+  totalPages: number;
+  isFetching: boolean;
+  history: any;
+  movies: any[];
   requestSearchingMoviesByGenre: (page: number, genresId: number[]) => void;
 }
 
@@ -21,7 +21,10 @@ interface StateType {
   currentPage: number;
 }
 
-class GenreListContainer extends React.Component<GenreListContainerProps, StateType> {
+class GenreListContainer extends React.Component<
+  GenreListContainerProps,
+  StateType
+> {
   static initialState = {
     currentPage: 1
   };
@@ -60,7 +63,9 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
         this.props.genresId
       );
     });
-    this.props.history.push(`/genres?=${this.props.genresId}/page=${this.state.currentPage}`)
+    this.props.history.push(
+      `/genres?=${this.props.genresId}/page=${this.state.currentPage}`
+    );
   };
 
   navKeyboard = (e: KeyboardEvent) => {
@@ -127,6 +132,8 @@ const mapStateToProps = state => ({
   requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state)
 });
 
-export default withRouter(connect(mapStateToProps, {
-  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre
-})(GenreListContainer));
+export default withRouter(
+  connect(mapStateToProps, {
+    requestSearchingMoviesByGenre: requestSearchingMoviesByGenre
+  })(GenreListContainer)
+);

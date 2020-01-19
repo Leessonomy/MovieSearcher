@@ -3,15 +3,14 @@ import { connect } from "react-redux";
 import CastInfo from "../Credits/Credits";
 
 interface CastInfoContainerProps {
-  movie: any,
+  movie: any;
 }
-
 
 class CastInfoContainer extends React.Component<CastInfoContainerProps> {
   render() {
     return (
       <CastInfo cast={this.props.movie.cast} crew={this.props.movie.crew} />
-    )
+    );
   }
 }
 

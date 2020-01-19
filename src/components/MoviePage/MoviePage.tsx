@@ -72,8 +72,6 @@ const MoviePage = ({
   similarMovies,
   gallery,
 }: MoviePageProps & RouteComponentProps) => {
-  let sortedOverview = toString(overview).length > 360 ? overview.slice(0, 360) + "..." : overview;
-  console.log(sortedOverview);
   const id = match.params.id;
   return (
     <MoviePageWrapper>
@@ -89,7 +87,7 @@ const MoviePage = ({
             />
           </ImageWrapper>
 
-    <FavoriteBtn id={id} imageURL={imageURL} overwiev={sortedOverview} raiting={raiting} title={title}/>
+    <FavoriteBtn id={id} imageURL={imageURL} overwiev={overview} raiting={raiting} title={title}/>
 
         </MoviePagePoster>
         <MovieDescription>
