@@ -106,17 +106,15 @@ class SearchListContainer extends React.Component<
         <MoviesWrapper>{content}</MoviesWrapper>
         {!this.props.isFetching ? <PreloaderMovies /> : null}
         {this.props.totalPages > 1 ? (
-          <div>
-            <Pagination
-              currentPage={this.state.currentPage}
-              totalPages={this.props.totalPages}
-              handlePrevClick={() => this.handlerTransition("prev")}
-              handleNextClick={() => this.handlerTransition("next")}
-            />
-          </div>
-        ) : (
-          ""
-        )}
+               <Pagination
+               currentPage={this.state.currentPage}
+               totalPages={this.props.totalPages}
+               handlePrevClick={() => this.handlerTransition("prev")}
+               handleNextClick={() => this.handlerTransition("next")}
+             />
+           ) : (
+             ""
+           )}
       </MainPageContainer>
     );
   }

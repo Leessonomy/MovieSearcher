@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const MainPageContainer = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const MoviesWrapper = styled.div`
@@ -14,6 +14,9 @@ const MoviesWrapper = styled.div`
   flex-direction: row;
   @media (max-width: 767px) {
     margin-top: 190px;
+  }
+  @media (min-width: 767px) and (max-width: 1144px) {
+    margin-left: 8%;
   }
 `;
 
@@ -92,9 +95,9 @@ const Votes = styled.p`
   position: absolute;
   right: calc(91% - 10px);
   top: 279px;
-  @media (max-width: 767px) {
+  @media (max-width: 1143px) {
     right: calc(89% - 10px);
-    top: 254px;
+    top: 261px;
   }
 `;
 

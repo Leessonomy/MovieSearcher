@@ -3,7 +3,8 @@ import {
   ButtonNext,
   ButtonPrev,
   ButtonNextWrapper,
-  ButtonPrevWrapper
+  ButtonPrevWrapper,
+  ButtonContainer
 } from "./style";
 
 const Pagination = ({
@@ -15,18 +16,18 @@ const Pagination = ({
   const showNextButton = currentPage < totalPages;
   const showPrevButton = currentPage > 1;
   return (
-    <div>
+    <ButtonContainer>
       {showPrevButton ? (
         <ButtonPrevWrapper>
-          <ButtonPrev onClick={handlePrevClick} />
+          <ButtonPrev onClick={handlePrevClick}>Prev Page</ButtonPrev>
         </ButtonPrevWrapper>
       ) : null}
       {showNextButton ? (
         <ButtonNextWrapper>
-          <ButtonNext onClick={handleNextClick} />
+          <ButtonNext onClick={handleNextClick}>Next Page</ButtonNext>
         </ButtonNextWrapper>
       ) : null}
-    </div>
+    </ButtonContainer>
   );
 };
 

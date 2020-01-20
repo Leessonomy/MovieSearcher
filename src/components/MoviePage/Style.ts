@@ -4,7 +4,7 @@ const MoviePageWrapper = styled.div`
   min-width: 320px;
   width: 360px;
   margin: 0 auto;
-   @media (min-width: 768px) {
+  @media (min-width: 768px) {
     max-width: 768px;
     min-width: 768px;
     width: 768px;
@@ -40,7 +40,7 @@ const MoviePageContainer = styled.article`
   @media (max-width: 768px) {
     margin-left: 0;
     margin: 0 auto;
-    width: 100%
+    width: 100%;
   }
 `;
 const MoviePagePoster = styled.div`
