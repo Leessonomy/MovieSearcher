@@ -126,7 +126,6 @@ const ButtonClose = styled.button`
   border: none;
   background-color: rgba(0, 0, 0, 0.65);
   opacity: 1;
-  -webkit-transition: 0.15s;
   transition: 0.15s;
   z-index: 9999;
   &:before {

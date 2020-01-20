@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const SimilarMovieCard = styled.div`
   display: flex;
-  width: auto;
+  width: 185px
   flex-direction: column;
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
@@ -10,13 +10,22 @@ const SimilarMovieCard = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   transition: 0.2s;
-  margin-top: 14px;
+  margin-top: 15px;
   margin-right: -150px;
   margin-left: 40px;
-  @media (max-width: 1359px) {
-    border-top: 2px solid #919aa2;
+  height: 278px;
+  @media (min-width: 760px) and (max-width: 1359px) {
     margin-left: 17px;
     margin-right: 9px;
+    height: 231px;
+    width: 154px;
+  }
+
+  @media (min-width: 320px) and (max-width: 759px) {
+    margin-left: 17px;
+    margin-right: 9px;
+    height: 138px;
+    width: 92px;
   }
 `;
 

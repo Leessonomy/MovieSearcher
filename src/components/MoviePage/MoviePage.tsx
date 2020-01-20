@@ -105,39 +105,39 @@ const MoviePage = ({
             <BlockInfo>
               <InfoField>
                 <SubComponentHeadlineInfo>Raiting:</SubComponentHeadlineInfo>
-                <span>{raiting}</span>
+                <span> {raiting}</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>Votes:</SubComponentHeadlineInfo>
-                <span>{votes}</span>
+                <span> {votes}</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>Popularity:</SubComponentHeadlineInfo>
-                <span>{popularity}</span>
+                <span> {popularity}</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>Budget:</SubComponentHeadlineInfo>
-                <span>{budget}</span>
+                <span> {budget}</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>Status:</SubComponentHeadlineInfo>
-                <span>{status}</span>
+                <span> {status}</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>
                   Data Realease:
                 </SubComponentHeadlineInfo>
-                <span>{release}</span>
+                <span> {release}</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>Runtime:</SubComponentHeadlineInfo>
-                <span>{runtime} min.</span>
+                <span> {runtime} min.</span>
               </InfoField>
               <InfoField>
                 <SubComponentHeadlineInfo>Language:</SubComponentHeadlineInfo>
                 {spokenLanguages &&
                   spokenLanguages.map((lang: any, index: number) => {
-                    return <span key={index}>{lang.name}</span>;
+                    return <span key={index}> {lang.name}</span>;
                   })}
               </InfoField>
             </BlockInfo>
@@ -153,7 +153,7 @@ const MoviePage = ({
                   return (
                     <GenresName>
                       <Link key={index} to={`/genres?=${genre.id}`}>
-                        {genre.name}
+                         {genre.name}
                       </Link>
                     </GenresName>
                   );

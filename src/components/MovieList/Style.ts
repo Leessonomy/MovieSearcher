@@ -5,6 +5,7 @@ const MainPageContainer = styled.div`
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
+  padding-bottom: 20px;
 `;
 
 const MoviesWrapper = styled.div`

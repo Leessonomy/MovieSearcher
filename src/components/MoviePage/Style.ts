@@ -135,7 +135,7 @@ const Title = styled.h1`
 `;
 const InfoField = styled.div`
   display: block;
-  height: 40px;
+  height: auto;
   font-size: 17px;
   flex-basis: 49%;
   flex-grow: 1;
@@ -175,6 +175,7 @@ const ImagesContainer = styled.div`
     background-color: #cedade
     justify-content: center;
     box-shadow: 0 14px 28px 14px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    padding-bottom: 4px;
 `;
 
 const SubComponentHeadlineInfo = styled.h3`
