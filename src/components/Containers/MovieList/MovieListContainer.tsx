@@ -2,17 +2,21 @@ import React from "react";
 import MovieList from "../../MovieList/MovieList";
 import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { connect } from "react-redux";
-import { requestMovies } from "../../../redux/reducers/MoviesReducer";
+import { requestMovies } from "../../../redux/index";
 import Pagination from "../../Common/Pagination/Pagination";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import { withRouter } from "react-router-dom";
+import {
+  Location,
+  History
+} from "history";
 
 interface MoviesContainerProps {
-  location: object;
+  location: Location;
+  history: History;
   totalPages: number;
   isFetching: boolean;
   movies: any[];
-  history: any;
   requestMovies: (page: number) => void;
 }
 
@@ -72,7 +76,7 @@ class MoviesListContainer extends React.Component<
   render() {
     const { movies } = this.props;
     console.log(movies);
-    let content = movies.map(movie => {
+    let content = movies.map((movie: any) => {
       let sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."

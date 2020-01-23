@@ -2,9 +2,14 @@ import React, { useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { FavoriteWrapper, CounterFavoriteList } from "./Style";
 import { connect } from "react-redux";
-import { getFavorites } from "../../../redux/reducers/MoviesReducer";
+import { getFavorites } from "../../../redux/index";
 
-const FavoritePage = ({ favoriteMovies, getFavorites }) => {
+interface FavoriteLinkProps {
+  favoriteMovies: any[];
+  getFavorites: () => void
+}
+
+const FavoriteLink = ({ favoriteMovies, getFavorites }: FavoriteLinkProps) => {
   useEffect(() => {
     getFavorites();
   }, []);
@@ -18,9 +23,9 @@ const FavoritePage = ({ favoriteMovies, getFavorites }) => {
 
 const mapStateToProps = state => ({
   favoriteMovies: state.movies.favoriteMovies,
-  getFavorites: getFavorites(state)
+  getFavorites: getFavorites()
 });
 
 export default withRouter(
-  connect(mapStateToProps, { getFavorites: getFavorites })(FavoritePage)
+  connect(mapStateToProps, { getFavorites: getFavorites })(FavoriteLink)
 );

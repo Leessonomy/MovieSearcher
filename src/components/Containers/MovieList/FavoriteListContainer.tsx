@@ -1,19 +1,23 @@
 import React from "react";
 import MovieList from "../../MovieList/MovieList";
 import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
-import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
-import { getFavorites } from "../../../redux/reducers/MoviesReducer";
+import { getFavorites } from "../../../redux/index";
 import { connect } from "react-redux";
 
-class FavoriteListContainer extends React.Component {
+
+interface FavoriteListContainerProps {
+  favoriteMovies: [];
+  getFavorites: () => void
+}
+
+class FavoriteListContainer extends React.Component<FavoriteListContainerProps> {
   componentDidMount() {
     this.props.getFavorites();
   }
 
   render() {
-    console.log(this.props.favoriteMovies);
     let { favoriteMovies } = this.props;
-    let content = favoriteMovies.map(movie => {
+    let content = favoriteMovies.map((movie: any) => {
       return (
         <MovieList
           key={movie.id}
@@ -35,8 +39,7 @@ class FavoriteListContainer extends React.Component {
 
 const mapStateToProps = state => ({
   favoriteMovies: state.movies.favoriteMovies,
-  getFavorites: getFavorites(state),
-  isFetching: state.movies.isFetching
+  getFavorites: getFavorites(),
 });
 
 export default connect(mapStateToProps, { getFavorites })(

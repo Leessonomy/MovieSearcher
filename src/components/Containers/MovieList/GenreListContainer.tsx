@@ -1,18 +1,22 @@
 import React from "react";
-import { requestSearchingMoviesByGenre } from "../../../redux/reducers/MoviesReducer";
+import { requestSearchingMoviesByGenre } from "../../../redux/index";
+import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
+import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import MovieList from "../../MovieList/MovieList";
 import Pagination from "../../Common/Pagination/Pagination";
-import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { connect } from "react-redux";
-import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import { withRouter } from "react-router-dom";
+import {
+  Location,
+  History
+} from "history";
 
 interface GenreListContainerProps {
+  location: Location;
+  history: History;
   genresId: number[];
-  location: object;
   totalPages: number;
   isFetching: boolean;
-  history: any;
   movies: any[];
   requestSearchingMoviesByGenre: (page: number, genresId: number[]) => void;
 }
@@ -83,10 +87,9 @@ class GenreListContainer extends React.Component<
     }
     return false;
   };
-
   render() {
     const { movies } = this.props;
-    let content = movies.map(movie => {
+    let content = movies.map((movie: any) => {
       let sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
@@ -108,7 +111,6 @@ class GenreListContainer extends React.Component<
         {!this.props.isFetching ? <PreloaderMovies /> : null}
         {this.props.totalPages > 1 ? (
           <div>
-            {" "}
             <Pagination
               currentPage={this.state.currentPage}
               totalPages={this.props.totalPages}

@@ -12,22 +12,29 @@ import {
   addGenreSucces,
   deleteGenreSucces,
   clearGenres
-} from "../../redux/reducers/MoviesReducer";
-import { withRouter } from "react-router-dom";
+} from "../../redux/index";
+import { withRouter} from "react-router-dom";
+import { RouteProps } from "react-router";
+import {
+  Location,
+  History
+} from "history";
+
 
 interface GenresProps {
-  genresId: string[];
+  genresId: string;
   genres: [];
   genreList: string;
-  history: any;
-  location: any;
-  addGenreSucces: (selected: string) => boolean;
-  deleteGenreSucces: (selected: string) => boolean;
-  requestSearchingMoviesByGenre: (selected: string) => boolean;
+  history: History;
+  location: Location;
+  addGenreSucces: (selected: string) => void;
+  deleteGenreSucces: (selected: string) => void;
+  requestSearchingMoviesByGenre: (page: number, genresId: any) => void;
 }
 
-class GenreContainer extends React.Component<GenresProps> {
-  handleChange = e => {
+class GenreContainer extends React.Component<GenresProps & RouteProps> {
+
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       addGenreSucces,
       deleteGenreSucces,
@@ -35,7 +42,8 @@ class GenreContainer extends React.Component<GenresProps> {
       genresId
     } = this.props;
 
-    let selected = e.target.value;
+    const page =  1;
+    const selected = e.target.value;
 
     if (e.target.checked) {
       addGenreSucces(selected);
@@ -49,8 +57,7 @@ class GenreContainer extends React.Component<GenresProps> {
       this.props.history.push(`/`);
     }
 
-    console.log(genresId);
-    return requestSearchingMoviesByGenre(1, genresId);
+    return requestSearchingMoviesByGenre(page, genresId);
   };
 
   render() {
@@ -73,15 +80,13 @@ class GenreContainer extends React.Component<GenresProps> {
   }
 }
 
-let mapStateToProps = state => ({
-  totalPages: state.movies.totalPages,
+let mapStateToProps = (state, ownProps: any) => ({
+  ...ownProps,
   genresId: state.movies.genresId,
   genres: state.movies.genreList,
-  page: state.movies.page,
   addGenreSucces: addGenreSucces(state),
   deleteGenreSucces: deleteGenreSucces(state),
-  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state),
-  clearGenres: clearGenres(state)
+  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state)
 });
 
 export default withRouter(
@@ -90,5 +95,4 @@ export default withRouter(
     addGenreSucces: addGenreSucces,
     deleteGenreSucces: deleteGenreSucces,
     clearGenres: clearGenres
-  })(GenreContainer)
-);
+  })(GenreContainer));

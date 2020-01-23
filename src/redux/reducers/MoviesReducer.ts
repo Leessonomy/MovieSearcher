@@ -1,23 +1,11 @@
 import { movieAPI } from "../../api/Api";
 import genres from "../../constants/genreList";
+import {ActionType} from '../Actions/ActionType'
+import {StateTypes} from '../StateTypes/StateTypes'
+import * as fromActions from '../Actions/Actions'
 
-const GET_MOVIE = "GET_MOVIE";
-const GET_MOVIES = "GET_MOVIES";
-const GET_SEARCHING_MOVIES = "GET_SEARCHING_MOVIES";
-const GET_TEXT = "GET_TEXT";
-const GET_SIMILAR_MOVIES = "GET_SIMILAR_MOVIES";
-const GET_GENRE = "GET_GENRE";
-const DELETE_GENRE = "DELETE_GENRE";
-const GET_MOVIE_WITH_GENRE = "GET_MOVIE_WITH_GENRE";
-const GET_GALLERY = "GET_GALLERY";
-const GET_TOTAL_PAGES = "GET_TOTAL_RESULTS";
-const GET_FAVORITE_LIST = "GET_FAVORITE_LIST";
-const ADD_FAVORITE_LIST = "ADD_FAVORITE_LIST";
-const DELETE_FAVORITE_LIST = "DELETE_FAVORITE_LIST";
-const CLEAR_GENRES = "CLEAR_GENRES";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
-let initialState = {
+let initialState: StateTypes = {
   movie: [],
   movies: [],
   similarMovies: [],
@@ -34,40 +22,46 @@ let initialState = {
   isFetching: false
 };
 
-const moviesReducer = (state = initialState, action) => {
+const moviesReducer = (state = initialState, action: fromActions.Actions) => {
   switch (action.type) {
-    case GET_MOVIES:
+    case ActionType.GET_MOVIES: {
+      const {action: movies} = action;
       return {
         ...state,
-        movies: [...action.movies]
-      };
-    case GET_SEARCHING_MOVIES:
+        movies: [...movies]
+      }
+    };
+    case ActionType.GET_SEARCHING_MOVIES: {
+      const {action: movies} = action;
       return {
         ...state,
-        movies: [...action.movies]
-      };
-    case GET_TEXT:
+        movies: [...movies]
+      }
+    };
+    case ActionType.GET_TEXT:
+      const {action: text} = action;
       return {
         ...state,
-        text: action.text
+        text: text
       };
-    case GET_MOVIE:
+    case ActionType.GET_MOVIE:
+      const {action: movie} = action;
       return {
         ...state,
-        movie: action.movie
+        movie: movie
       };
-    case GET_GENRE:
-      let newGenre = {
-        ...state.genresId.push(action.genre)
-      };
+    case ActionType.GET_GENRE:
+      const {action: genre} = action;
+      let newGenre = state.genresId.push(genre);
       return {
         ...state,
         newGenre,
         genresId: [...state.genresId],
         genreList: [...genres]
       };
-    case DELETE_GENRE:
-      let index = state.genresId.indexOf(action.genre);
+    case ActionType.DELETE_GENRE: {
+      const {action: genre} = action;
+      let index = state.genresId.indexOf(genre);
       let newGenreDelete = {
         ...state.genresId.splice(index, 1)
       };
@@ -75,136 +69,75 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         newGenreDelete,
         genresId: [...state.genresId]
-      };
-    case GET_MOVIE_WITH_GENRE:
+      }
+    };
+    case ActionType.GET_MOVIE_WITH_GENRE: {
+      const {action: movies} = action;
       return {
         ...state,
-        movies: [...action.movies]
-      };
-    case GET_SIMILAR_MOVIES:
+        movies: [...movies]
+      }
+    }
+    case ActionType.GET_SIMILAR_MOVIES: {
+      const {action: similarMovies} = action;
       return {
         ...state,
-        similarMovies: action.similarMovies
-      };
-    case GET_GALLERY:
+        similarMovies: similarMovies
+      }
+    };
+    case ActionType.GET_GALLERY: {
+      const {action: gallery} = action;
       return {
         ...state,
-        gallery: action.gallery
+        gallery: gallery
+      }
       };
-
-    case GET_TOTAL_PAGES:
+    case ActionType.GET_TOTAL_PAGES: {
+      const {action: totalPages} = action;
       return {
         ...state,
-        totalPages: action.totalPages
-      };
-    case TOGGLE_IS_FETCHING:
+        totalPages: totalPages
+      }
+    };
+    case ActionType.TOGGLE_IS_FETCHING: {
+      const {action: isFetching} = action;
       return {
         ...state,
-        isFetching: action.isFetching
-      };
-    case GET_FAVORITE_LIST: {
-      let getSavedList = JSON.parse(localStorage.getItem("favoriteList"));
-      console.log(getSavedList);
+        isFetching: isFetching
+      }
+    };
+    case ActionType.GET_FAVORITE_LIST: {
+      let storage: (any) = localStorage.getItem("favoriteList");
+      let getSavedList = JSON.parse(storage);
       return {
         ...state,
         favoriteMovies: getSavedList || state.favoriteMovies
       };
     }
-    case ADD_FAVORITE_LIST:
-      console.log(action.favorite);
+    case ActionType.ADD_FAVORITE_LIST: {
+      const {action: favorite} = action;
       return {
         ...state,
-        favoriteMovies: state.favoriteMovies.concat(action.favorite)
-      };
-
-    case DELETE_FAVORITE_LIST:
+        favoriteMovies: state.favoriteMovies.concat(favorite)
+      }
+    }
+    case ActionType.DELETE_FAVORITE_LIST: {
+      const {action: id} = action;
       return {
         ...state,
-        favoriteMovies: state.favoriteMovies.filter(movie => movie.id !== action.id)
-      };
-    case CLEAR_GENRES:
+        favoriteMovies: state.favoriteMovies.filter((movie: any) => movie.id !== id)
+      }
+    }
+    case ActionType.CLEAR_GENRES: {
       return {
         ...state,
         genresId: []
-      };
+      }
+    };
     default:
       return state;
   }
 };
 
-export const addGenreSucces = genre => ({ type: GET_GENRE, genre });
-export const deleteGenreSucces = genre => ({ type: DELETE_GENRE, genre });
-export const clearGenres = () => ({ type: CLEAR_GENRES, genres });
-///
-export const getMoviePageSucces = movie => ({ type: GET_MOVIE, movie });
-export const getSimilarMovies = similarMovies => ({ type: GET_SIMILAR_MOVIES, similarMovies });
-export const getGallery = gallery => ({ type: GET_GALLERY, gallery });
-///
-export const getMoviesSucces = movies => ({ type: GET_MOVIES, movies });
-export const getMoviesWithGenreSucces = movies => ({ type: GET_MOVIE_WITH_GENRE, movies });
-export const getSearchingSucces = movies => ({ type: GET_SEARCHING_MOVIES, movies });
-///
-export const getSearchText = text => dispatch => dispatch({ type: GET_TEXT, text });
-export const getTotalPages = totalPages => ({ type: GET_TOTAL_PAGES, totalPages });
-///
-export const setIsFetching = isFetching => ({ type: TOGGLE_IS_FETCHING, isFetching });
-///
-export const getFavorites = () => ({ type: GET_FAVORITE_LIST });
-export const addFavorites = favorite => ({ type: ADD_FAVORITE_LIST, favorite });
-export const deleteFavorites = id => ({ type: DELETE_FAVORITE_LIST, id });
-
-
-export const requestMoviePage = id => {
-  return async dispatch => {
-    dispatch(setIsFetching(false));
-    let dataMoviePage = await movieAPI.getMoviePage(id);
-    dispatch(getMoviePageSucces(dataMoviePage));
-    dispatch(setIsFetching(true));
-  };
-};
-
-export const requestSimilarMovies = id => {
-  return async dispatch => {
-    let dataSimilarMovies = await movieAPI.getSimilarMovies(id);
-    dispatch(getSimilarMovies(dataSimilarMovies));
-  };
-};
-
-export const requestGallery = id => {
-  return async dispatch => {
-    let dataGallery = await movieAPI.getGallery(id);
-    dispatch(getGallery(dataGallery));
-  };
-};
-
-export const requestMovies = page => {
-  return async dispatch => {
-    dispatch(setIsFetching(false));
-    let dataSearch = await movieAPI.getTopRatedMovies(page);
-    dispatch(getMoviesSucces(dataSearch.results));
-    dispatch(getTotalPages(dataSearch.total_pages));
-    dispatch(setIsFetching(true));
-  };
-};
-
-export const requestSearchingMovies = (page, text) => {
-  return async dispatch => {
-    dispatch(setIsFetching(false));
-    let dataSearch = await movieAPI.searchMovie(page, text);
-    dispatch(getMoviesSucces(dataSearch.results));
-    dispatch(getTotalPages(dataSearch.total_pages));
-    dispatch(setIsFetching(true));
-  };
-};
-
-export const requestSearchingMoviesByGenre = (page, movies) => {
-  return async dispatch => {
-    dispatch(setIsFetching(false));
-    let dataMovieGanre = await movieAPI.getSearchMovieSortGanre(page, movies);
-    dispatch(getMoviesWithGenreSucces(dataMovieGanre.results));
-    dispatch(getTotalPages(dataMovieGanre.total_pages));
-    dispatch(setIsFetching(true));
-  };
-};
 
 export default moviesReducer;

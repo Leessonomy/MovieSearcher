@@ -8,8 +8,8 @@ import {
   LinksWrapper
 } from "./Style";
 import SearchContainer from "../Containers/SearchContainer";
-import FavoritePage from "../Links&Buttons/FavoriteLink/FavoritePage";
-import HomePage from "../Links&Buttons/HomeLink/HomePage";
+import FavoriteLink from "../Links&Buttons/FavoriteLink/FavoriteLink";
+import HomeLink from "../Links&Buttons/HomeLink/HomeLink";
 import magnifierImg from "../../img/search.svg";
 
 const Header = () => (
@@ -23,8 +23,8 @@ const Header = () => (
       </ImageWrapper>
     </FieldContainer>
     <LinksWrapper>
-      <HomePage />
-      <FavoritePage />
+      <HomeLink />
+      <FavoriteLink />
     </LinksWrapper>
   </HeaderContainer>
 );

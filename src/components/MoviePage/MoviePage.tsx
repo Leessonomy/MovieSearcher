@@ -33,6 +33,7 @@ import SimilarMovies from "../SimilarMovies/SimilarMovies";
 import GalleryContainer from "../Containers/GalleryContainer";
 import ROUTES from "../../constants/routes";
 
+
 interface MoviePageProps {
   match: any,
   productionCompanies: any[],
@@ -53,6 +54,7 @@ interface MoviePageProps {
   gallery: any[]
 }
 
+
 const MoviePage = ({
   match,
   productionCompanies,
@@ -71,7 +73,7 @@ const MoviePage = ({
   overview,
   similarMovies,
   gallery,
-}: MoviePageProps & RouteComponentProps) => {
+}:  MoviePageProps & RouteComponentProps) => {
   const id = match.params.id;
   return (
     <MoviePageWrapper>

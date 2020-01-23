@@ -13,9 +13,9 @@ import PreloaderGallery from "../Common/Preloader/PreloaderGallery";
 import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 
+
 interface GalleryProps {
   match: any;
-  history: any;
   imageURL: string;
   galleryDesktop: string[];
   galleryMobile: string[];
@@ -25,7 +25,7 @@ interface GalleryProps {
 interface GalleryState {
   isOpen: boolean;
   loaded: boolean;
-  indexImage: any;
+  indexImage: number;
 }
 
 class Gallery extends React.Component<
@@ -41,8 +41,8 @@ class Gallery extends React.Component<
     };
   }
 
-  handlerClickOpen = e => {
-    let gettingIndex = e.currentTarget.getAttribute("data-index");
+  handlerClickOpen = (e: React.MouseEvent) => {
+    let gettingIndex = (e.currentTarget as HTMLButtonElement).getAttribute("data-index");
     let convertedIndex = Number(gettingIndex);
 
     this.setState({ indexImage: convertedIndex }, () => {
@@ -72,7 +72,7 @@ class Gallery extends React.Component<
     });
   };
 
-  handlerTransition = e => {
+  handlerTransition: React.MouseEventHandler = (e: any) => {
     let counterImage = this.state.indexImage;
     if (e.currentTarget.dataset.direction === "next") {
       ++counterImage;
@@ -93,8 +93,8 @@ class Gallery extends React.Component<
   render() {
     const { imageURL } = this.props;
     const { loaded } = this.state;
-    let galleryDisabledNextBtn =
-      this.props.galleryDesktop.length - 1 > this.state.indexImage
+    let galleryDisabledNextBtn = 
+    this.props.galleryDesktop.length - 1 > this.state.indexImage
         ? false
         : true;
     let galleryDisabledPrevBtn = this.state.indexImage > 0 ? false : true;

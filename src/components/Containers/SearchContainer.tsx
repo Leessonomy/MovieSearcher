@@ -3,16 +3,16 @@ import { FindField } from "../Header/Style";
 import {
   requestSearchingMovies,
   getSearchText
-} from "../../redux/reducers/MoviesReducer";
+} from "../../redux/index";
 import { connect } from "react-redux";
 import { withRouter, RouteProps } from "react-router-dom";
 
 interface SearchProps {
   text: string;
   history: any;
-  location: any;
-  getSearchText: (value: string) => any;
-  requestSearchingMovies: (number, text: string) => any;
+  location: object;
+  getSearchText: (value: string) => void;
+  requestSearchingMovies: (page: number, text: string) => void;
 }
 
 const SearchContainer = ({
@@ -38,13 +38,14 @@ const SearchContainer = ({
   });
 
   let onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let page = 1;
     let query = e.target.value.toLowerCase();
     if (query.length > 0) {
       history.push(`/search?q=${query}`);
     } else {
       history.push(`/`);
     }
-    requestSearchingMovies(1, query);
+    requestSearchingMovies(page, query);
     getSearchText(query);
   };
 
@@ -62,7 +63,7 @@ const SearchContainer = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   text: state.movies.text,
   requestSearchingMovies: requestSearchingMovies(state),
   getSearchText: getSearchText(state)

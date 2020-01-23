@@ -4,18 +4,18 @@ import {
   addFavorites,
   deleteFavorites,
   getFavorites
-} from "../../redux/reducers/MoviesReducer";
+} from "../../redux/index";
 import FavoriteBtn from "../Links&Buttons/FavoriteBtn/FavoriteBtn";
 
 interface FavoriteButtonProps {
-  id: number | string;
+  id: string;
   imageURL: string;
-  raiting: number | string;
+  raiting: number;
   title: string;
   overwiev: string;
   favoriteMovies: [];
   addFavorites: (movieListPages: object) => void;
-  deleteFavorites: (id: number | string) => void;
+  deleteFavorites: (id: string) => void;
 }
 
 class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
@@ -31,7 +31,7 @@ class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
   checked() {
     if (this.props.favoriteMovies.length > 0) {
       return this.props.favoriteMovies.find(
-        (ids: any) => ids.id == this.props.id
+        (favorite: any) => favorite.id === this.props.id
       );
     }
     return false;
@@ -65,9 +65,10 @@ class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
   favoriteMovies: state.movies.favoriteMovies,
-  getFavorites: getFavorites(state),
+  getFavorites: getFavorites(),
   addFavorites: addFavorites(state),
   deleteFavorites: deleteFavorites(state)
 });

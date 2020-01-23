@@ -1,12 +1,11 @@
 import React from "react";
 import Gallery from "../Gallery/Gallery";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { setIsFetching } from "../../redux/reducers/MoviesReducer";
+import { setIsFetching } from "../../redux/index";
 import { RouteComponentProps } from "react-router";
 
 interface GalleryContainerProps {
-  imageURL: any;
+  imageURL: string;
   galleryDesktop: string[];
   galleryMobile: string[];
   index: number;
@@ -14,7 +13,7 @@ interface GalleryContainerProps {
   setIsFetching: (boolean: boolean) => boolean;
 }
 
-class GalleryContainer extends React.Component<GalleryContainerProps> {
+class GalleryContainer extends React.Component<GalleryContainerProps & RouteComponentProps> {
   render() {
     return (
       <>
@@ -29,7 +28,8 @@ class GalleryContainer extends React.Component<GalleryContainerProps> {
     );
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
   galleryDesktop: state.movies.gallery.map(gallery => {
     return `https://image.tmdb.org/t/p/w780${gallery.file_path}`;
   }),
@@ -40,6 +40,4 @@ const mapStateToProps = state => ({
   isFetching: state.movies.isFetching
 });
 
-export default connect(mapStateToProps, { setIsFetching: setIsFetching })(
-  GalleryContainer
-);
+export default connect(mapStateToProps, { setIsFetching: setIsFetching })(GalleryContainer);

@@ -7,12 +7,12 @@ import {
   requestGallery,
   setIsFetching,
   clearGenres
-} from "../../redux/reducers/MoviesReducer";
+} from "../../redux/index";
 import { withRouter } from "react-router-dom";
 import PreloaderMovies from "../Common/Preloader/PreloaderMovies";
 
 interface MoviePageProps {
-  movie: any[];
+  movie: object;
   gallery: any[];
   isFetching: boolean;
   match: any;
@@ -37,7 +37,6 @@ class MoviePageContainer extends React.Component<MoviePageProps> {
 
   render() {
     let { movie, similarMovies, gallery } = this.props;
-    console.log(movie);
     return [movie].map((data: any) => {
       return (
         <>
@@ -74,7 +73,6 @@ const mapStateToProps = state => ({
   requestSimilarMovies: requestSimilarMovies(state),
   requestGallery: requestGallery(state),
   requestMoviePage: requestMoviePage(state),
-  clearGenres: clearGenres(state)
 });
 
 export default withRouter(

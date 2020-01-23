@@ -3,12 +3,15 @@ import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { connect } from "react-redux";
 import Pagination from "../../Common/Pagination/Pagination";
 import MovieList from "../../MovieList/MovieList";
-import { requestSearchingMovies } from "../../../redux/reducers/MoviesReducer";
+import { requestSearchingMovies } from "../../../redux/index";
 import { withRouter } from "react-router-dom";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
+import {
+  Location,
+} from "history";
 
 interface SearchListContainerProps {
-  location: object;
+  location: Location;
   text: string;
   totalPages: number;
   isFetching: boolean;
@@ -83,8 +86,7 @@ class SearchListContainer extends React.Component<
 
   render() {
     const { movies } = this.props;
-    console.log(movies);
-    let content = movies.map(movie => {
+    let content = movies.map((movie: any) => {
       let sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
