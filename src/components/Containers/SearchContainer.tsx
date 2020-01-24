@@ -1,9 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { FindField } from "../Header/Style";
-import {
-  requestSearchingMovies,
-  getSearchText
-} from "../../redux/index";
+import { requestSearchingMovies, getSearchText } from "../../redux/index";
 import { connect } from "react-redux";
 import { withRouter, RouteProps } from "react-router-dom";
 
@@ -28,6 +25,7 @@ const SearchContainer = ({
     if (!mounted.current) {
       mounted.current = true;
     } else {
+
       if (location.pathname.slice(0, 7) == "/movie/") {
         el.style.position = "static";
       }
@@ -38,14 +36,15 @@ const SearchContainer = ({
   });
 
   let onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let page = 1;
-    let query = e.target.value.toLowerCase();
+    const page = 1;
+    const query = e.target.value.toLowerCase();
     if (query.length > 0) {
       history.push(`/search?q=${query}`);
     } else {
-      history.push(`/`);
+      history.push(`/best`);
     }
     requestSearchingMovies(page, query);
+
     getSearchText(query);
   };
 
@@ -63,7 +62,7 @@ const SearchContainer = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   text: state.movies.text,
   requestSearchingMovies: requestSearchingMovies(state),
   getSearchText: getSearchText(state)

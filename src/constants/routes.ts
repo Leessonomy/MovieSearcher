@@ -1,5 +1,5 @@
 const ROUTES = {
-  HOME: "/",
+  HOME: "/best",
   FAVORITE_LIST_MOVIES: "/favorite",
   SEARCH_LIST_MOVIES: "/search",
   GENRES_LIST_MOVIES: "/genres",

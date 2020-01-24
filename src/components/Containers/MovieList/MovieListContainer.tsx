@@ -6,10 +6,7 @@ import { requestMovies } from "../../../redux/index";
 import Pagination from "../../Common/Pagination/Pagination";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import { withRouter } from "react-router-dom";
-import {
-  Location,
-  History
-} from "history";
+import { Location, History } from "history";
 
 interface MoviesContainerProps {
   location: Location;
@@ -24,17 +21,13 @@ interface StateType {
   currentPage: number;
 }
 
-class MoviesListContainer extends React.Component<
-  MoviesContainerProps,
-  StateType
-> {
+class MoviesListContainer extends React.Component<MoviesContainerProps, StateType> {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: 1
     };
   }
-
   componentDidMount() {
     const { requestMovies } = this.props;
     requestMovies(this.state.currentPage);
@@ -45,37 +38,38 @@ class MoviesListContainer extends React.Component<
   }
 
   handlerTransition = (type: string) => {
+    const {requestMovies, history} = this.props;
     let counterPage = this.state.currentPage;
+
     if (type === "next") {
       ++counterPage;
     } else if (type === "prev") {
       --counterPage;
     }
+
     this.setState({ currentPage: counterPage }, () => {
-      this.props.requestMovies(this.state.currentPage);
+      requestMovies(this.state.currentPage);
     });
-    this.props.history.push(`/page=${this.state.currentPage}`);
+    history.push(`/best/page=${counterPage}`);
   };
+  
 
   navKeyboard = (e: KeyboardEvent) => {
     if (e.code == "ArrowRight") {
       if (this.state.currentPage < this.props.totalPages) {
         this.handlerTransition("next");
       }
-      return false;
     }
     if (e.code == "ArrowLeft") {
       if (this.state.currentPage > 1) {
         this.handlerTransition("prev");
       }
-      return false;
     }
     return false;
   };
 
   render() {
     const { movies } = this.props;
-    console.log(movies);
     let content = movies.map((movie: any) => {
       let sortedOverview =
         movie.overview.length > 360
@@ -92,19 +86,18 @@ class MoviesListContainer extends React.Component<
         />
       );
     });
+
     return (
       <MainPageContainer>
         <MoviesWrapper>{content}</MoviesWrapper>
         {!this.props.isFetching ? <PreloaderMovies /> : null}
         {this.props.totalPages > 1 ? (
-          <div>
-            <Pagination
-              currentPage={this.state.currentPage}
-              totalPages={this.props.totalPages}
-              handlePrevClick={() => this.handlerTransition("prev")}
-              handleNextClick={() => this.handlerTransition("next")}
-            />
-          </div>
+          <Pagination
+            currentPage={this.state.currentPage}
+            totalPages={this.props.totalPages}
+            handlePrevClick={() => this.handlerTransition("prev")}
+            handleNextClick={() => this.handlerTransition("next")}
+          />
         ) : (
           ""
         )}

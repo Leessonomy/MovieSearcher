@@ -6,7 +6,7 @@ import {
 
 
 interface ScrollToTopRouteProps {
-  exact: boolean;
+  exact?: boolean;
   path: string;
   location: Location;
   RouteKey?: boolean;

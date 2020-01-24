@@ -6,12 +6,11 @@ import MovieList from "../../MovieList/MovieList";
 import { requestSearchingMovies } from "../../../redux/index";
 import { withRouter } from "react-router-dom";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
-import {
-  Location,
-} from "history";
+import { Location, History } from "history";
 
 interface SearchListContainerProps {
-  location: Location;
+  history: History;
+  location: any;
   text: string;
   totalPages: number;
   isFetching: boolean;
@@ -23,10 +22,7 @@ interface StateType {
   currentPage: number;
 }
 
-class SearchListContainer extends React.Component<
-  SearchListContainerProps,
-  StateType
-> {
+class SearchListContainer extends React.Component<SearchListContainerProps, StateType> {
   static initialState: StateType = {
     currentPage: 1
   };
@@ -45,7 +41,12 @@ class SearchListContainer extends React.Component<
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      this.onRouteChanged();
+      if (this.props.location.search.length < prevProps.location.search.length) {
+        this.onRouteChanged();
+      }
+    }
+    if (this.props.location!== prevProps.location) {
+      window.scrollTo(0, 0);
     }
   }
 
@@ -54,40 +55,41 @@ class SearchListContainer extends React.Component<
   }
 
   handlerTransition = (type: string) => {
+    const {requestSearchingMovies, history, text} = this.props;
     let counterPage = this.state.currentPage;
+
     if (type === "next") {
       ++counterPage;
     } else if (type === "prev") {
       --counterPage;
     }
-    this.setState({ currentPage: counterPage }, () => {
-      this.props.requestSearchingMovies(
-        this.state.currentPage,
-        this.props.text
-      );
-    });
+
+     this.setState({ currentPage: counterPage }, () => {
+       requestSearchingMovies(this.state.currentPage, text);
+     });
+    history.push(`/search?q=${text}/page=${counterPage}`);
   };
+  
 
   navKeyboard = (e: KeyboardEvent) => {
     if (e.code == "ArrowRight") {
       if (this.state.currentPage < this.props.totalPages) {
         this.handlerTransition("next");
       }
-      return false;
     }
     if (e.code == "ArrowLeft") {
       if (this.state.currentPage > 1) {
         this.handlerTransition("prev");
       }
-      return false;
     }
     return false;
   };
 
+
   render() {
     const { movies } = this.props;
-    let content = movies.map((movie: any) => {
-      let sortedOverview =
+    const content = movies.map((movie: any, index: any) => {
+      const sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
           : movie.overview;
@@ -108,15 +110,15 @@ class SearchListContainer extends React.Component<
         <MoviesWrapper>{content}</MoviesWrapper>
         {!this.props.isFetching ? <PreloaderMovies /> : null}
         {this.props.totalPages > 1 ? (
-               <Pagination
-               currentPage={this.state.currentPage}
-               totalPages={this.props.totalPages}
-               handlePrevClick={() => this.handlerTransition("prev")}
-               handleNextClick={() => this.handlerTransition("next")}
-             />
-           ) : (
-             ""
-           )}
+          <Pagination
+            currentPage={this.state.currentPage}
+            totalPages={this.props.totalPages}
+            handlePrevClick={() => this.handlerTransition("prev")}
+            handleNextClick={() => this.handlerTransition("next")}
+          />
+        ) : (
+          ""
+        )}
       </MainPageContainer>
     );
   }

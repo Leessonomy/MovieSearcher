@@ -11,9 +11,9 @@ const MoviePageWrapper = styled.div`
   }
 
   @media (min-width: 1359px) {
-    min-width: 1380px;
-    max-width: 1380px;
-    width: 1380px;
+    min-width: 1360px;
+    max-width: 1360px;
+    width: 1360px;
   }
 `;
 
@@ -73,6 +73,8 @@ const TitleSimilarMovies = styled.h2`
   position: relative;
   left: 59px;
   width: 196%;
+  display: flex;
+  justify-content: center;
   @media (max-width: 1359px) {
     width: 100%;
     position: relative;
@@ -152,7 +154,7 @@ const Tagline = styled.div`
   flex-basis: 49%;
   flex-grow: 1;
 `;
-const Overview = styled.p`
+const Overview = styled.div`
   display: inline-block;
   font-size: 15px;
   flex-basis: 49%;
@@ -178,18 +180,18 @@ const ImagesContainer = styled.div`
     padding-bottom: 4px;
 `;
 
-const SubComponentHeadlineInfo = styled.h3`
+const SubheadlineInfo = styled.h3`
 display: inline-block
 font-family: JosefinSans, sans-serif;
 font-size: 18px
 `;
 
-const SubComponentHeadline = styled.h3`
+const Subheadline = styled.h3`
 display: block
 font-family: JosefinSans, sans-serif;
 margin-bottom: 6px;
 `;
-const SubComponentHeadlineGenres = styled.h3`
+const SubheadlineGenres = styled.h3`
 display: block
 font-family: JosefinSans, sans-serif;
 margin-bottom: 16px;
@@ -248,6 +250,26 @@ const CreditsWrapper = styled.button`
   }
 `;
 
+const StubGallery = styled.div`
+  position: relative;
+  top: 6px;
+  display: flex;
+  justify-content: center;
+  font-size: 26px;
+  font-family: Montserrat, sans-serif;
+`;
+const StubSimillar = styled.div`
+  position: relative;
+  top: 48px;
+  left: 59px;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  width: 196%;
+  border-bottom: 1px solid black;
+  font-family: Montserrat, sans-serif;
+`;
+
 export {
   MoviePageContainer,
   MoviePagePoster,
@@ -265,14 +287,16 @@ export {
   CompaniesWrapper,
   CompanyProducer,
   GenresName,
-  SubComponentHeadline,
-  SubComponentHeadlineGenres,
-  SubComponentHeadlineInfo,
+  Subheadline,
+  SubheadlineGenres,
+  SubheadlineInfo,
   CreditsWrapper,
   GalleryWrapper,
   GalleryTitle,
   MoviePageWrapper,
   SimilarMoviesWrapper,
   TitleSimilarMovies,
-  ImageWrapper
+  ImageWrapper,
+  StubGallery,
+  StubSimillar
 };

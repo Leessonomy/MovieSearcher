@@ -13,7 +13,6 @@ import PreloaderGallery from "../Common/Preloader/PreloaderGallery";
 import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 
-
 interface GalleryProps {
   match: any;
   imageURL: string;
@@ -28,10 +27,7 @@ interface GalleryState {
   indexImage: number;
 }
 
-class Gallery extends React.Component<
-  RouteComponentProps & GalleryProps,
-  GalleryState
-> {
+class Gallery extends React.PureComponent<RouteComponentProps & GalleryProps, GalleryState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,35 +38,18 @@ class Gallery extends React.Component<
   }
 
   handlerClickOpen = (e: React.MouseEvent) => {
-    let gettingIndex = (e.currentTarget as HTMLButtonElement).getAttribute("data-index");
-    let convertedIndex = Number(gettingIndex);
+    const {history, match} = this.props;
+    const gettingIndex = (e.currentTarget as HTMLElement).getAttribute("data-index");
+    const convertedIndex = Number(gettingIndex);
 
     this.setState({ indexImage: convertedIndex }, () => {
       this.setState(prevState => ({
         indexImage: prevState.indexImage
       }));
     });
-    this.props.history.push(
-      `/movie/${this.props.match.params.id}?image=${convertedIndex}`
-    );
+     history.push(`/movie/${match.params.id}?image=${convertedIndex}`);
   };
-
-  closeImage = () => {
-    this.setState(
-      {
-        isOpen: false
-      },
-      () => {
-        this.props.history.push(`/movie/${this.props.match.params.id}`);
-      }
-    );
-  };
-
-  openImage = () => {
-    this.setState({
-      isOpen: true
-    });
-  };
+  
 
   handlerTransition: React.MouseEventHandler = (e: any) => {
     let counterImage = this.state.indexImage;
@@ -86,18 +65,33 @@ class Gallery extends React.Component<
     });
   };
 
+  closeImage = () => {
+    const {history, match} = this.props;
+    this.setState({
+        isOpen: false
+    },
+      () => {
+        history.push(`/movie/${match.params.id}`);
+      }
+    );
+  };
+
+  openImage = () => {
+    this.setState({
+      isOpen: true
+    });
+  };
+
   loadImage = () => {
     this.setState({ loaded: true });
   };
 
+
   render() {
     const { imageURL } = this.props;
     const { loaded } = this.state;
-    let galleryDisabledNextBtn = 
-    this.props.galleryDesktop.length - 1 > this.state.indexImage
-        ? false
-        : true;
-    let galleryDisabledPrevBtn = this.state.indexImage > 0 ? false : true;
+    const galleryDisabledNextBtn = this.props.galleryDesktop.length - 1 > this.state.indexImage ? false : true;
+    const galleryDisabledPrevBtn = this.state.indexImage > 0 ? false : true;
     return (
       <>
         <ImageWrapper onClick={this.openImage}>

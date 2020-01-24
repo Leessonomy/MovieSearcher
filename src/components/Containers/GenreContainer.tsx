@@ -13,13 +13,9 @@ import {
   deleteGenreSucces,
   clearGenres
 } from "../../redux/index";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { RouteProps } from "react-router";
-import {
-  Location,
-  History
-} from "history";
-
+import { Location, History } from "history";
 
 interface GenresProps {
   genresId: string;
@@ -33,7 +29,6 @@ interface GenresProps {
 }
 
 class GenreContainer extends React.Component<GenresProps & RouteProps> {
-
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       addGenreSucces,
@@ -42,7 +37,7 @@ class GenreContainer extends React.Component<GenresProps & RouteProps> {
       genresId
     } = this.props;
 
-    const page =  1;
+    const page = 1;
     const selected = e.target.value;
 
     if (e.target.checked) {
@@ -54,7 +49,7 @@ class GenreContainer extends React.Component<GenresProps & RouteProps> {
     if (genresId.length > 0) {
       this.props.history.push(`/genres?=${genresId}`);
     } else if (genresId.length === 0) {
-      this.props.history.push(`/`);
+      this.props.history.push(`/best`);
     }
 
     return requestSearchingMoviesByGenre(page, genresId);
@@ -95,4 +90,5 @@ export default withRouter(
     addGenreSucces: addGenreSucces,
     deleteGenreSucces: deleteGenreSucces,
     clearGenres: clearGenres
-  })(GenreContainer));
+  })(GenreContainer)
+);

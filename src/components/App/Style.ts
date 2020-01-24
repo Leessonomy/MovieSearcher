@@ -38,7 +38,23 @@ ${fontFace("normal", "normal")}
 }
 `;
 
-export const MainWrapper = styled.div`
+const MainWrapper = styled.div`
   display: flex;
   background-color: #f8f9fa;
 `;
+
+const Fallback = styled.div`
+position: fixed;
+font-size: 24px;
+font-weight: 700;
+font-family: Segoe, sans-serif;
+top: 50%;
+left: 50%;
+right: 50%;
+bottom: 50%
+`;
+
+export {
+  MainWrapper,
+  Fallback
+}

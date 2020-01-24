@@ -6,7 +6,7 @@ import { getFavorites } from "../../../redux/index";
 
 interface FavoriteLinkProps {
   favoriteMovies: any[];
-  getFavorites: () => void
+  getFavorites: () => void;
 }
 
 const FavoriteLink = ({ favoriteMovies, getFavorites }: FavoriteLinkProps) => {

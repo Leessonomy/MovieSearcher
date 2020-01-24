@@ -51,7 +51,7 @@ const ButtonPrev = styled.button`
   position: relative;
   height: 45px;
   background-color: #34495e;
-  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
   color: #fff;
   border: none;
   font-family: "Lato";

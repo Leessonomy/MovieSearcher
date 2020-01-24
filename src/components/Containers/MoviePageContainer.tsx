@@ -36,12 +36,13 @@ class MoviePageContainer extends React.Component<MoviePageProps> {
   }
 
   render() {
-    let { movie, similarMovies, gallery } = this.props;
-    return [movie].map((data: any) => {
+    const { movie, similarMovies, gallery } = this.props;
+    return [movie].map((data: any, index: number) => {
       return (
         <>
           {!this.props.isFetching ? <PreloaderMovies /> : null}
           <MoviePage
+            key={index}
             imageURL={data.poster_path}
             title={data.original_title}
             tagline={data.tagline}
@@ -72,7 +73,7 @@ const mapStateToProps = state => ({
   similarMovies: state.movies.similarMovies.slice(0, 5),
   requestSimilarMovies: requestSimilarMovies(state),
   requestGallery: requestGallery(state),
-  requestMoviePage: requestMoviePage(state),
+  requestMoviePage: requestMoviePage(state)
 });
 
 export default withRouter(

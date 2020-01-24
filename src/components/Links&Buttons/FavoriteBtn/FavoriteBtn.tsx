@@ -4,7 +4,7 @@ import { StyleBtn } from "./Style";
 const FavoriteBtn = ({ toggleText, handlerClick }) => (
   <div>
     <StyleBtn onClick={handlerClick}>
-      {toggleText ? "Delete to favorite list" : "Add to favorite list"}
+      {toggleText ? "Remove from favorite list" : "Add to favorite list"}
     </StyleBtn>
   </div>
 );

@@ -21,18 +21,13 @@ interface FavoriteButtonProps {
 class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
   componentDidUpdate(prevProps) {
     if (this.props.favoriteMovies !== prevProps.favoriteMovies) {
-      localStorage.setItem(
-        "favoriteList",
-        JSON.stringify(this.props.favoriteMovies)
-      );
+      localStorage.setItem("favoriteList", JSON.stringify(this.props.favoriteMovies));
     }
   }
 
   checked() {
     if (this.props.favoriteMovies.length > 0) {
-      return this.props.favoriteMovies.find(
-        (favorite: any) => favorite.id === this.props.id
-      );
+      return this.props.favoriteMovies.find((favorite: any) => favorite.id === this.props.id);
     }
     return false;
   }

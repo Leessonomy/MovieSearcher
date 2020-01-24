@@ -47,7 +47,7 @@ export const requestMoviePage = (id?) => {
   export const requestSearchingMoviesByGenre = (page?, id?) => {
     return async dispatch => {
       dispatch(fromActions.actions.setIsFetching(false));
-      let dataMovieGanre = await movieAPI.getSearchMovieSortGanre(page, id);
+      let dataMovieGanre = await movieAPI.getSearchMovieSortGenre(page, id);
       dispatch(fromActions.actions.getMoviesWithGenreSucces(dataMovieGanre.results));
       dispatch(fromActions.actions.getTotalPages(dataMovieGanre.total_pages));
       dispatch(fromActions.actions.setIsFetching(true));

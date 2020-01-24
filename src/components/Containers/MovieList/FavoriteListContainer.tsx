@@ -4,10 +4,9 @@ import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { getFavorites } from "../../../redux/index";
 import { connect } from "react-redux";
 
-
 interface FavoriteListContainerProps {
   favoriteMovies: [];
-  getFavorites: () => void
+  getFavorites: () => void;
 }
 
 class FavoriteListContainer extends React.Component<FavoriteListContainerProps> {
@@ -16,8 +15,8 @@ class FavoriteListContainer extends React.Component<FavoriteListContainerProps> 
   }
 
   render() {
-    let { favoriteMovies } = this.props;
-    let content = favoriteMovies.map((movie: any) => {
+    const { favoriteMovies } = this.props;
+    const content = favoriteMovies.map((movie: any, index: any) => {
       return (
         <MovieList
           key={movie.id}
@@ -39,7 +38,7 @@ class FavoriteListContainer extends React.Component<FavoriteListContainerProps> 
 
 const mapStateToProps = state => ({
   favoriteMovies: state.movies.favoriteMovies,
-  getFavorites: getFavorites(),
+  getFavorites: getFavorites()
 });
 
 export default connect(mapStateToProps, { getFavorites })(

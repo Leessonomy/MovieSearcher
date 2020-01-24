@@ -13,7 +13,7 @@ interface GalleryContainerProps {
   setIsFetching: (boolean: boolean) => boolean;
 }
 
-class GalleryContainer extends React.Component<GalleryContainerProps & RouteComponentProps> {
+class GalleryContainer extends React.PureComponent<GalleryContainerProps & RouteComponentProps> {
   render() {
     return (
       <>
@@ -21,7 +21,7 @@ class GalleryContainer extends React.Component<GalleryContainerProps & RouteComp
           imageURL={this.props.imageURL}
           galleryDesktop={this.props.galleryDesktop}
           galleryMobile={this.props.galleryMobile}
-          key={this.props.index}
+          key={this.props.order}
           order={this.props.order}
         />
       </>
@@ -40,4 +40,6 @@ const mapStateToProps = (state, ownProps) => ({
   isFetching: state.movies.isFetching
 });
 
-export default connect(mapStateToProps, { setIsFetching: setIsFetching })(GalleryContainer);
+export default connect(mapStateToProps, { setIsFetching: setIsFetching })(
+  GalleryContainer
+);

@@ -9,9 +9,9 @@ import {
   Votes
 } from "./Style";
 
-const MovieList = ({ imageUrl, title, id, overview, key, votes }) => {
+const MovieList = ({ imageUrl, title, overview, id, votes }) => {
   return (
-    <MovieCardContainer key={key}>
+    <MovieCardContainer>
       <Link to={ROUTES.FILM_PAGE + id}>
         <picture>
           <source
