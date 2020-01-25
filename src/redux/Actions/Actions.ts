@@ -7,7 +7,7 @@ export const actions = {
     deleteGenreSucces: (genre: number) => createAction(ActionType.DELETE_GENRE, genre),
     clearGenres: () => createAction(ActionType.CLEAR_GENRES),
     
-    getMoviePageSucces: (movie: any) => createAction(ActionType.GET_MOVIE, movie),
+    getMoviePageSucces: (movie: []) => createAction(ActionType.GET_MOVIE, movie),
     getSimilarMovies: (similarMovies: []) => createAction(ActionType.GET_SIMILAR_MOVIES, similarMovies),
     getGallery: (gallery: []) => createAction(ActionType.GET_GALLERY, gallery),
     ///

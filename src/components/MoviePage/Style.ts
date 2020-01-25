@@ -149,7 +149,6 @@ const InfoField = styled.div`
 
 const Tagline = styled.div`
   display: block;
-  height: 40px;
   font-size: 17px;
   flex-basis: 49%;
   flex-grow: 1;
@@ -222,13 +221,12 @@ const GenresName = styled.p`
 margin-left: 5px;
 margin-top: 19px;
 &:hover {
-    background-color:  #c1b8e4fa;
+    color: #c1b8e4fa;
 }
  > a {
     text-decoration: none;
     font-size: 16px;
     color: #151221fc;
-    text-shadow: 0px 4px 13px;
  }
 }
 `;

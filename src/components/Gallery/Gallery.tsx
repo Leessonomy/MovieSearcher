@@ -52,6 +52,7 @@ class Gallery extends React.PureComponent<RouteComponentProps & GalleryProps, Ga
   
 
   handlerTransition: React.MouseEventHandler = (e: any) => {
+    const { history, match } = this.props;
     let counterImage = this.state.indexImage;
     if (e.currentTarget.dataset.direction === "next") {
       ++counterImage;
@@ -59,9 +60,7 @@ class Gallery extends React.PureComponent<RouteComponentProps & GalleryProps, Ga
       --counterImage;
     }
     this.setState({ indexImage: counterImage }, () => {
-      this.props.history.push(
-        `/movie/${this.props.match.params.id}?image=${this.state.indexImage}`
-      );
+      history.push(`/movie/${match.params.id}?image=${this.state.indexImage}`);
     });
   };
 

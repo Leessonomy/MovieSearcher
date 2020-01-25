@@ -32,7 +32,6 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
   }
 
   componentDidMount() {
-    console.log(this.props.location);
     window.addEventListener("keydown", this.navKeyboard);
   }
   componentWillUnmount() {

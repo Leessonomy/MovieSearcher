@@ -12,17 +12,17 @@ const SimilarMovies = ({ imageURL, title, overview, id }) => {
           <picture>
             <source
               srcSet={`https://image.tmdb.org/t/p/w185${imageURL}`}
-              style={{ height: "auto", width: "auto" }}
+              style={{ height: "auto", width: "auto", borderRadius: "6px"}}
               media="(min-width: 1360px)"
             />
             <source
               srcSet={`https://image.tmdb.org/t/p/w154${imageURL}`}
-              style={{ height: "auto", width: "auto" }}
+              style={{ height: "auto", width: "auto", borderRadius: "6px"}}
               media="(min-width: 760px)"
             />
             <img
               src={`https://image.tmdb.org/t/p/w92${imageURL}`}
-              style={{ height: "auto", width: "auto" }}
+              style={{ height: "auto", width: "auto", borderRadius: "6px" }}
             />
           </picture>
           <Overview>{overview}</Overview>

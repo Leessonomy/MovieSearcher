@@ -15,7 +15,7 @@ const FieldContainer = styled.div`
   align-items: center;
   padding-left: calc(50% - 587px);
   text-decoration: none;
-  font-family: Segoe;
+  position: relative;
 `;
 const FieldWrapper = styled.div`
   display: block;
@@ -25,7 +25,7 @@ const FieldWrapper = styled.div`
 const LinksWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-left: calc(50% - 140px);
+  padding-left: calc(50% - 192px);
   text-transform: uppercase;
   justify-content: center;
   width: 100%;
@@ -36,29 +36,25 @@ const LinksWrapper = styled.div`
 
 const FindField = styled.input`
   background-color: #fff;
-  height: 30px;
+  height: 32px;
   width: 361px;
   padding-left: 6px;
+  font-family: Segoe;
   @media (max-width: 767px) {
     width: 214px;
   }
 `;
 const ImageWrapper = styled.div`
-  min-width: 0;
   display: inline-block;
   width: auto;
-  position: absolute;
 `;
 const SearchImage = styled.img`
   width: 24px;
   height: 23px;
-  position: absolute;
-  top: -12px;
+  position: relative;
+  top: 2px;
   cursor: pointer;
-  left: 331px;
-  @media (max-width: 767px) {
-    left: 187px;
-  }
+  right: 30px;
 `;
 
 export {

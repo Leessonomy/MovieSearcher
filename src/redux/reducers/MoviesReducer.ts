@@ -1,9 +1,7 @@
-import { movieAPI } from "../../api/Api";
 import genres from "../../constants/genreList";
-import {ActionType} from '../Actions/ActionType'
-import {StateTypes} from '../StateTypes/StateTypes'
-import * as fromActions from '../Actions/Actions'
-
+import { ActionType } from "../Actions/ActionType";
+import { StateTypes } from "../StateTypes/StateTypes";
+import * as fromActions from "../Actions/Actions";
 
 let initialState: StateTypes = {
   movie: [],
@@ -25,33 +23,33 @@ let initialState: StateTypes = {
 const moviesReducer = (state = initialState, action: fromActions.Actions) => {
   switch (action.type) {
     case ActionType.GET_MOVIES: {
-      const {action: movies} = action;
+      const { action: movies } = action;
       return {
         ...state,
         movies: [...movies]
-      }
-    };
+      };
+    }
     case ActionType.GET_SEARCHING_MOVIES: {
-      const {action: movies} = action;
+      const { action: movies } = action;
       return {
         ...state,
         movies: [...movies]
-      }
-    };
+      };
+    }
     case ActionType.GET_TEXT:
-      const {action: text} = action;
+      const { action: text } = action;
       return {
         ...state,
         text: text
       };
     case ActionType.GET_MOVIE:
-      const {action: movie} = action;
+      const { action: movie } = action;
       return {
         ...state,
         movie: movie
       };
     case ActionType.GET_GENRE:
-      const {action: genre} = action;
+      const { action: genre } = action;
       let newGenre = state.genresId.push(genre);
       return {
         ...state,
@@ -60,7 +58,7 @@ const moviesReducer = (state = initialState, action: fromActions.Actions) => {
         genreList: [...genres]
       };
     case ActionType.DELETE_GENRE: {
-      const {action: genre} = action;
+      const { action: genre } = action;
       let index = state.genresId.indexOf(genre);
       let newGenreDelete = {
         ...state.genresId.splice(index, 1)
@@ -69,45 +67,45 @@ const moviesReducer = (state = initialState, action: fromActions.Actions) => {
         ...state,
         newGenreDelete,
         genresId: [...state.genresId]
-      }
-    };
+      };
+    }
     case ActionType.GET_MOVIE_WITH_GENRE: {
-      const {action: movies} = action;
+      const { action: movies } = action;
       return {
         ...state,
         movies: [...movies]
-      }
+      };
     }
     case ActionType.GET_SIMILAR_MOVIES: {
-      const {action: similarMovies} = action;
+      const { action: similarMovies } = action;
       return {
         ...state,
         similarMovies: similarMovies
-      }
-    };
+      };
+    }
     case ActionType.GET_GALLERY: {
-      const {action: gallery} = action;
+      const { action: gallery } = action;
       return {
         ...state,
         gallery: gallery
-      }
       };
+    }
     case ActionType.GET_TOTAL_PAGES: {
-      const {action: totalPages} = action;
+      const { action: totalPages } = action;
       return {
         ...state,
         totalPages: totalPages
-      }
-    };
+      };
+    }
     case ActionType.TOGGLE_IS_FETCHING: {
-      const {action: isFetching} = action;
+      const { action: isFetching } = action;
       return {
         ...state,
         isFetching: isFetching
-      }
-    };
+      };
+    }
     case ActionType.GET_FAVORITE_LIST: {
-      let storage: (any) = localStorage.getItem("favoriteList");
+      let storage: any = localStorage.getItem("favoriteList");
       let getSavedList = JSON.parse(storage);
       return {
         ...state,
@@ -115,29 +113,28 @@ const moviesReducer = (state = initialState, action: fromActions.Actions) => {
       };
     }
     case ActionType.ADD_FAVORITE_LIST: {
-      const {action: favorite} = action;
+      const { action: favorite } = action;
       return {
         ...state,
         favoriteMovies: state.favoriteMovies.concat(favorite)
-      }
+      };
     }
     case ActionType.DELETE_FAVORITE_LIST: {
-      const {action: id} = action;
+      const { action: id } = action;
       return {
         ...state,
         favoriteMovies: state.favoriteMovies.filter((movie: any) => movie.id !== id)
-      }
+      };
     }
     case ActionType.CLEAR_GENRES: {
       return {
         ...state,
         genresId: []
-      }
-    };
+      };
+    }
     default:
       return state;
   }
 };
-
 
 export default moviesReducer;

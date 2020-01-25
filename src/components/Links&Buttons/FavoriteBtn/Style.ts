@@ -20,8 +20,10 @@ outline: none;
 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 border-radius: 6px;
 cursor: pointer;
-@media (min-width: 768px) {
-  }
+border: none;
+&:hover {
+  background-color: rgb(69, 46, 113);
+}
 }
 `;
 

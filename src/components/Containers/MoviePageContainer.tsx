@@ -82,6 +82,5 @@ export default withRouter(
     requestMoviePage: requestMoviePage,
     requestSimilarMovies: requestSimilarMovies,
     requestGallery: requestGallery,
-    clearGenres: clearGenres
   })(MoviePageContainer)
 );
