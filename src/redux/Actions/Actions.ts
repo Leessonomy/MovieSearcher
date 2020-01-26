@@ -3,7 +3,7 @@ import {createAction} from './ActionCreaterTypes';
 import {ActionsUnion} from './ActionsUnion';
 
 export const actions = {
-    addGenreSucces: (genre: number) => createAction(ActionType.GET_GENRE, genre),
+    addGenreSucces: (genre: any) => createAction(ActionType.GET_GENRE, genre),
     deleteGenreSucces: (genre: number) => createAction(ActionType.DELETE_GENRE, genre),
     clearGenres: () => createAction(ActionType.CLEAR_GENRES),
     

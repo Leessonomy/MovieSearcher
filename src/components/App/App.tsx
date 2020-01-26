@@ -35,6 +35,7 @@ const App = ({ clearGenres, location, history }: AppProps & RouteProps) => {
     }
   }, [location.pathname]);
 
+  console.log(location);
   return (
     <>
     <GlobalStyle />
@@ -50,8 +51,8 @@ const App = ({ clearGenres, location, history }: AppProps & RouteProps) => {
         </Switch>
       </Switch>
       <Switch>
-        <ScrollToTopRoute component={MoviesListContainer} path={ROUTES.HOME} />
-        <Route component={SearchListContainer} path={ROUTES.SEARCH_LIST_MOVIES} />
+        <Route component={MoviesListContainer} path={ROUTES.HOME} />
+        <Route component={SearchListContainer} path={ROUTES.SEARCH_LIST_MOVIES}/>
         <Route component={GenreListContainer} path={ROUTES.GENRES_LIST_MOVIES}
         />
       </Switch>

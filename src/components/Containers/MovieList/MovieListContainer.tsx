@@ -29,16 +29,23 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
     };
   }
   componentDidMount() {
-    const { requestMovies } = this.props;
-    requestMovies(this.state.currentPage);
+    const { requestMovies, location } = this.props;
     window.addEventListener("keydown", this.navKeyboard);
+
+    const page = location.pathname.split("=")[1];
+    const convertedPage = isNaN(Number(page)) ? 1 : Number(page);
+
+    this.setState({ currentPage: convertedPage }, () => {
+      requestMovies(convertedPage);
+    });
   }
+
   componentWillUnmount() {
     window.removeEventListener("keydown", this.navKeyboard);
   }
 
   handlerTransition = (type: string) => {
-    const {requestMovies, history} = this.props;
+    const { requestMovies, history } = this.props;
     let counterPage = this.state.currentPage;
 
     if (type === "next") {
@@ -52,7 +59,6 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
     });
     history.push(`/best/page=${counterPage}`);
   };
-  
 
   navKeyboard = (e: KeyboardEvent) => {
     if (e.code == "ArrowRight") {

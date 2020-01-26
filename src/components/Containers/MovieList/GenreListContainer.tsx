@@ -1,5 +1,8 @@
 import React from "react";
-import { requestSearchingMoviesByGenre } from "../../../redux/index";
+import {
+  requestSearchingMoviesByGenre,
+  addGenreSucces
+} from "../../../redux/index";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import MovieList from "../../MovieList/MovieList";
@@ -16,6 +19,7 @@ interface GenreListContainerProps {
   isFetching: boolean;
   movies: any[];
   requestSearchingMoviesByGenre: (page: number, genresId: number[]) => void;
+  addGenreSucces: (convertedId: number[]) => void;
 }
 
 interface StateType {
@@ -32,16 +36,38 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
   }
 
   componentDidMount() {
+    const {
+      requestSearchingMoviesByGenre,
+      addGenreSucces,
+      location
+    } = this.props;
     window.addEventListener("keydown", this.navKeyboard);
+
+    const id = location.search.split("=")[1].split("/")[0];
+    const page = location.search.split("=")[2];
+    const convertedId = id.split(",").map(Number);
+    const convertedPage = isNaN(Number(page)) ? 1 : Number(page);
+
+    this.setState({ currentPage: convertedPage }, () => {
+      requestSearchingMoviesByGenre(convertedPage, convertedId);
+    });
+
+    if (this.props.genresId.length !== convertedId.length) {
+      addGenreSucces(convertedId);
+    }
   }
+
   componentWillUnmount() {
     window.removeEventListener("keydown", this.navKeyboard);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.genresId !== prevProps.genresId) {
-      this.onRouteChanged();
+    if (this.props.location.search !== prevProps.location.search) {
+      if (this.props.genresId !== prevProps.genresId) {
+        this.onRouteChanged();
+      }
     }
+
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0);
     }
@@ -52,7 +78,11 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
   }
 
   handlerTransition = (type: string) => {
-    const {requestSearchingMoviesByGenre, history, genresId} = this.props;
+    const { 
+      requestSearchingMoviesByGenre, 
+      history, 
+      genresId 
+    } = this.props;
     let counterPage = this.state.currentPage;
 
     if (type === "next") {
@@ -66,7 +96,6 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
     });
     history.push(`/genres?=${genresId}/page=${counterPage}`);
   };
-  
 
   navKeyboard = (e: KeyboardEvent) => {
     if (e.code == "ArrowRight") {
@@ -123,11 +152,13 @@ const mapStateToProps = state => ({
   totalPages: state.movies.totalPages,
   genresId: state.movies.genresId,
   isFetching: state.movies.isFetching,
+  addGenreSucces: addGenreSucces(state),
   requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state)
 });
 
 export default withRouter(
   connect(mapStateToProps, {
-    requestSearchingMoviesByGenre: requestSearchingMoviesByGenre
+    requestSearchingMoviesByGenre: requestSearchingMoviesByGenre,
+    addGenreSucces: addGenreSucces
   })(GenreListContainer)
 );

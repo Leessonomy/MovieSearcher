@@ -3,19 +3,20 @@ import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { connect } from "react-redux";
 import Pagination from "../../Common/Pagination/Pagination";
 import MovieList from "../../MovieList/MovieList";
-import { requestSearchingMovies } from "../../../redux/index";
+import { requestSearchingMovies, getSearchText } from "../../../redux/index";
 import { withRouter } from "react-router-dom";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import { Location, History } from "history";
 
 interface SearchListContainerProps {
   history: History;
-  location: any;
+  location: Location;
   text: string;
   totalPages: number;
   isFetching: boolean;
   movies: any[];
   requestSearchingMovies: (currentPage: number, text: string) => void;
+  getSearchText: (query: string) => void;
 }
 
 interface StateType {
@@ -32,8 +33,23 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
   }
 
   componentDidMount() {
+    const { 
+      requestSearchingMovies, 
+      getSearchText, 
+      location 
+    } = this.props;
     window.addEventListener("keydown", this.navKeyboard);
+
+    const query = location.search.split("=")[1].split("/")[0];
+    const page = location.search.split("=")[2];
+    const convertedPage = isNaN(Number(page)) ? 1 : Number(page);
+
+    this.setState({ currentPage: convertedPage }, () => {
+      requestSearchingMovies(convertedPage, query);
+    });
+    getSearchText(query);
   }
+
   componentWillUnmount() {
     window.removeEventListener("keydown", this.navKeyboard);
   }
@@ -44,7 +60,7 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
         this.onRouteChanged();
       }
     }
-    if (this.props.location!== prevProps.location) {
+    if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0);
     }
   }
@@ -54,7 +70,11 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
   }
 
   handlerTransition = (type: string) => {
-    const {requestSearchingMovies, history, text} = this.props;
+    const { 
+      requestSearchingMovies, 
+      history, 
+      text 
+    } = this.props;
     let counterPage = this.state.currentPage;
 
     if (type === "next") {
@@ -63,12 +83,11 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
       --counterPage;
     }
 
-     this.setState({ currentPage: counterPage }, () => {
-       requestSearchingMovies(this.state.currentPage, text);
-     });
+    this.setState({ currentPage: counterPage }, () => {
+      requestSearchingMovies(this.state.currentPage, text);
+    });
     history.push(`/search?q=${text}/page=${counterPage}`);
   };
-  
 
   navKeyboard = (e: KeyboardEvent) => {
     if (e.code == "ArrowRight") {
@@ -83,7 +102,6 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
     }
     return false;
   };
-
 
   render() {
     const { movies } = this.props;
@@ -128,11 +146,13 @@ const mapStateToProps = state => ({
   text: state.movies.text,
   totalPages: state.movies.totalPages,
   isFetching: state.movies.isFetching,
+  getSearchText: getSearchText(state),
   requestSearchingMovies: requestSearchingMovies(state)
 });
 
 export default withRouter(
-  connect(mapStateToProps, { requestSearchingMovies: requestSearchingMovies })(
-    SearchListContainer
-  )
+  connect(mapStateToProps, {
+    requestSearchingMovies: requestSearchingMovies,
+    getSearchText: getSearchText
+  })(SearchListContainer)
 );

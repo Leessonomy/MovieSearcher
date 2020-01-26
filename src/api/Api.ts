@@ -36,13 +36,6 @@ export const movieAPI = {
       });
   },
 
-  getGanre() {
-    return instance
-      .get(`genre/movie/list?api_key=${API_KEY}&language=en-US`)
-      .then(res => {
-        return res.data.genres;
-      });
-  },
   getSimilarMovies(id) {
     return instance
       .get(`movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`)
