@@ -75,6 +75,7 @@ const MovieTitle = styled.h4`
 const Overview = styled.p`
   width: 183px;
   word-wrap: break-word;
+  min-height: 301px;
   @media (max-width: 1144px) {
     width: 166px;
     height: 100%;

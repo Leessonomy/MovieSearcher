@@ -34,15 +34,18 @@ class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
 
   handlerClick = () => {
     const sortedOverview =
-      this.props.overwiev.length > 360
-        ? this.props.overwiev.slice(0, 360) + "..."
-        : this.props.overwiev;
-
+    this.props.overwiev.length > 360
+      ? this.props.overwiev.slice(0, 360) + "..."
+      : this.props.overwiev;
+    const sortedTitle = 
+    this.props.title.length > 34
+      ? this.props.title.slice(0, 34) + "..."
+      : this.props.title;
     const movieListPages = {
       id: this.props.id,
       imageURL: this.props.imageURL,
       raiting: this.props.raiting,
-      title: this.props.title,
+      title: sortedTitle,
       overwiev: sortedOverview
     };
     if (!this.checked()) {

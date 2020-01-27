@@ -103,15 +103,19 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
 
   render() {
     const { movies } = this.props;
-    const content = movies.map((movie: any, index: any) => {
+    const content = movies.map((movie: any) => {
       const sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
           : movie.overview;
+      const sortedTitle = 
+        movie.title.length > 34
+        ? movie.title.slice(0, 34) + "..."
+        : movie.title;
       return (
         <MovieList
           key={movie.id}
-          title={movie.title}
+          title={sortedTitle}
           id={movie.id}
           imageUrl={movie.poster_path}
           overview={sortedOverview}

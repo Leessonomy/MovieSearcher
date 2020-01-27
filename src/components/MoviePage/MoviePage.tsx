@@ -34,6 +34,7 @@ import { RouteComponentProps } from "react-router";
 import SimilarMovies from "../SimilarMovies/SimilarMovies";
 import GalleryContainer from "../Containers/GalleryContainer";
 import ROUTES from "../../constants/routes";
+import stubImage from "../../img/stub-image.png";
 
 interface MoviePageProps {
   match: any;
@@ -79,11 +80,16 @@ const MoviePage = ({
     <MoviePageWrapper>
       <MoviePageContainer>
         <MoviePagePoster>
-          <Title>{title}</Title>
+          <Title>{title || "Not Available"}</Title>
           <ImageWrapper>
+            {imageURL ? (
             <img style={{ marginTop: "6px", boxShadow: "0 0 12px 0 #ccb68b", width: "inherit", borderRadius: "8px", height: "auto" }}
               src={`https://image.tmdb.org/t/p/w342${imageURL}`}
             />
+            ) : (
+            <img style={{ marginTop: "6px", borderRadius: "8px", height: "auto", width: "342px" }} src={stubImage} />
+            )
+}
           </ImageWrapper>
 
           <FavoriteBtn
@@ -94,53 +100,54 @@ const MoviePage = ({
             raiting={raiting}
             title={title}
           />
+          
         </MoviePagePoster>
         <MovieDescription>
           <HeadDescription>
             <Tagline>
               <Subheadline>Tagline:</Subheadline>
               <br />
-              <span>{tagline}</span>
+              <span>{tagline || "Not Available"}</span>
             </Tagline>
             <Overview>
               <Subheadline>Description:</Subheadline>
               <br />
-              <span>{overview}</span>
+              <span>{overview || "Not Available"}</span>
             </Overview>
             <BlockInfo>
               <InfoField>
                 <SubheadlineInfo>Raiting:</SubheadlineInfo>
-                <span> {raiting}</span>
+                <span> {raiting || "Not Available"}</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Votes:</SubheadlineInfo>
-                <span> {votes}</span>
+                <span> {votes || "Not Available"}</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Popularity:</SubheadlineInfo>
-                <span> {popularity}</span>
+                <span> {popularity || "Not Available"}</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Budget:</SubheadlineInfo>
-                <span> {budget}</span>
+                <span> {budget || "Not Available"}</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Status:</SubheadlineInfo>
-                <span> {status}</span>
+                <span> {status || "Not Available"}</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Data Realease:</SubheadlineInfo>
-                <span> {release}</span>
+                <span> {release || "Not Available"}</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Runtime:</SubheadlineInfo>
-                <span> {runtime} min.</span>
+                <span> {runtime || "Not Available"} min.</span>
               </InfoField>
               <InfoField>
                 <SubheadlineInfo>Language:</SubheadlineInfo>
                 {spokenLanguages &&
                   spokenLanguages.map((lang: any, index: number) => {
-                    return <span key={index}> {lang.name}</span>;
+                    return <span key={index}>{lang.name || "Not Available"}</span>;
                   })}
               </InfoField>
             </BlockInfo>
@@ -155,7 +162,7 @@ const MoviePage = ({
                 genres.map(genre => {
                   return (
                     <GenresName key={genre.id}>
-                      <Link to={`/genres?=${genre.id}`}>{genre.name}</Link>
+                      <Link to={`/genres?=${genre.id}`}>{genre.name || "Not Available"}</Link>
                     </GenresName>
                   );
                 })}
@@ -208,7 +215,7 @@ const MoviePage = ({
                   })}
                 </ImagesContainer>
               ) : (
-                <StubGallery>Not Aviable</StubGallery>
+                <StubGallery>Not Available</StubGallery>
               )}
             </GalleryWrapper>
           </HeadDescription>
@@ -233,7 +240,7 @@ const MoviePage = ({
               );
             })
           ) : (
-            <StubSimillar>Not Aviable</StubSimillar>
+            <StubSimillar>Not Available</StubSimillar>
           )}
         </SimilarMoviesWrapper>
       </MoviePageContainer>

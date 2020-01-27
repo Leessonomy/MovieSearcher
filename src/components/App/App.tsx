@@ -34,8 +34,6 @@ const App = ({ clearGenres, location, history }: AppProps & RouteProps) => {
       clearGenres();
     }
   }, [location.pathname]);
-
-  console.log(location);
   return (
     <>
     <GlobalStyle />

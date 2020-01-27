@@ -29,9 +29,9 @@ const CastInfo = ({ cast, crew, history }) => {
         <CharacterCastTitle>Character:</CharacterCastTitle>
         <NameCastTitle>Name:</NameCastTitle>
       </CastWrapper>
-      {cast.map(cast => {
+      {cast.map((cast, index) => {
         return (
-          <CastPerson>
+          <CastPerson key={index}>
             <FieldCastCharacter>
               {cast.character || "Not available"}
             </FieldCastCharacter>
@@ -45,9 +45,9 @@ const CastInfo = ({ cast, crew, history }) => {
         <NameCrewJob>Job:</NameCrewJob>
         <NameCrewDepartment>Department:</NameCrewDepartment>
       </CrewWrapper>
-      {crew.map(crew => {
+      {crew.map((crew, index) => {
         return (
-          <CrewPerson>
+          <CrewPerson key={index}>
             <FieldCrewName>{crew.name || "Not available"}</FieldCrewName>
             <FieldCrewJob>{crew.job || "Not available"}</FieldCrewJob>
             <FieldCrewDepartament>
