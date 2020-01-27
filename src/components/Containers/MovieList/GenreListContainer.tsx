@@ -62,14 +62,13 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0);
+    }
     if (this.props.location.search !== prevProps.location.search) {
       if (this.props.genresId !== prevProps.genresId) {
         this.onRouteChanged();
       }
-    }
-
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
     }
   }
 

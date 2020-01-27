@@ -4,6 +4,7 @@ const CreditsContainer = styled.ul`
   width: 100%;
   list-style-type: none;
   margin-right: 38px;
+  font-family: Segoe;
 `;
 
 const CastPerson = styled.li`
@@ -14,7 +15,9 @@ const CastPerson = styled.li`
   justify-content: space-between;
   padding: 3px 0;
   border-bottom: 1px solid #9c9696;
-  flex-direction: column;
+  background-color: #dcdadaab;
+  color: #000000;
+  font-weight: 600;
 `;
 
 const FieldCastName = styled.span`
@@ -33,6 +36,9 @@ const CrewPerson = styled.li`
   justify-content: space-between;
   flex-basis: 10%;
   border-bottom: 1px solid #9c9696;
+  background-color: #dcdadaab;
+  color: #000000;
+  font-weight: 600;
 `;
 const FieldCrewJob = styled.span`
   margin-right: 20px;
@@ -69,6 +75,15 @@ const CastWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const BackLink = styled.a`
+font-size: 18px;
+cursor: pointer;
+font-weight: 800;
+color: #0c8bd6eb;
+border-bottom: 1px solid #0c8bd6eb;
+`
+
 export {
   CastPerson,
   FieldCastCharacter,
@@ -84,5 +99,6 @@ export {
   NameCrewJob,
   NameCrewDepartment,
   CrewWrapper,
-  CastWrapper
+  CastWrapper,
+  BackLink
 };

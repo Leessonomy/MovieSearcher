@@ -56,12 +56,10 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0);
       if (this.props.location.search.length < prevProps.location.search.length) {
         this.onRouteChanged();
       }
-    }
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
     }
   }
 
