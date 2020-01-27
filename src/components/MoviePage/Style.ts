@@ -116,10 +116,6 @@ const HeadDescription = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 6%;
-  @media (max-width: 768px) {
-    margin-left: 0;
-  }
-
 `;
 const Title = styled.h1`
   display: inline-block;

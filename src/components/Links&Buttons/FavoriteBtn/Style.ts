@@ -10,6 +10,7 @@ background: rgb(102, 74, 156);
 text-align: center;
 display: block;
 margin: 20px auto
+text-align: center;
 font-family: Montserrat, sans-serif;
 font-size: 25px;
 padding: 6px;
