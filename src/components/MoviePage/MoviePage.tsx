@@ -29,6 +29,7 @@ import {
   StubSimillar
 } from "./Style";
 import FavoriteBtn from "../Containers/FavoriteBtnContainer";
+import BackBtn from "../Links&Buttons/BackBtn/BackBtn";
 import { Link, withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 import SimilarMovies from "../SimilarMovies/SimilarMovies";
@@ -77,6 +78,7 @@ const MoviePage = ({
   const id = match.params.id;
   return (
     <MoviePageWrapper>
+       <BackBtn />
       <MoviePageContainer>
         <MoviePagePoster>
           <Title>{title}</Title>
