@@ -106,7 +106,7 @@ class Gallery extends React.PureComponent<RouteComponentProps & GalleryProps, Ga
             <GalleryWrapper>
               <ZoomGalleryBackground>
                 <ButtonClose onClick={this.closeImage}>X</ButtonClose>
-                <picture>
+                <picture style={{display: "flex", width: "100%", justifyContent: "center"}}>
                   <ZoomImageGallery
                     onLoad={this.loadImage}
                     srcSet={this.props.galleryDesktop[this.state.indexImage]}

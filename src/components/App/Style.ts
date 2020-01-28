@@ -44,17 +44,16 @@ const MainWrapper = styled.div`
 `;
 
 const Fallback = styled.div`
-position: fixed;
-font-size: 24px;
-font-weight: 700;
-font-family: Segoe, sans-serif;
-top: 50%;
-left: 50%;
-right: 50%;
-bottom: 50%
+  position: fixed;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  font-family: Segoe, sans-serif;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
 `;
 
-export {
-  MainWrapper,
-  Fallback
-}
+export { MainWrapper, Fallback };

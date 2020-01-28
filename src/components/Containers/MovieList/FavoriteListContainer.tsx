@@ -1,6 +1,6 @@
 import React from "react";
 import MovieList from "../../MovieList/MovieList";
-import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
+import { MoviesWrapper, MoviesFavoriteWrapper, MainPageContainer } from "../../MovieList/Style";
 import { getFavorites } from "../../../redux/index";
 import { connect } from "react-redux";
 
@@ -30,7 +30,7 @@ class FavoriteListContainer extends React.Component<FavoriteListContainerProps> 
     });
     return (
       <MainPageContainer>
-        <MoviesWrapper>{content}</MoviesWrapper>
+        <MoviesFavoriteWrapper>{content}</MoviesFavoriteWrapper>
       </MainPageContainer>
     );
   }

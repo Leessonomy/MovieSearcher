@@ -36,7 +36,7 @@ const ButtonPrev = styled.button`
   position: relative;
   top: 218.5px;
   height: 50px;
-  left: calc(50% - 1236px);
+  left: calc(50% - 1241px);
   cursor: pointer;
   width: 26px;
   height: 50px;
@@ -71,13 +71,13 @@ const ButtonPrev = styled.button`
 
   @media (max-width: 760px) {
     top: 90px;
-    left: calc(5% - 388px);
+    left: calc(5% - 387px);
   }
 `;
 const ButtonNext = styled.button`
   position: relative;
   top: 218.5px;
-  right: calc(8% - 36px);
+  right: calc(8% - 45px);
   cursor: pointer;
   width: 26px;
   height: 50px;
@@ -112,7 +112,7 @@ const ButtonNext = styled.button`
   }
   @media (max-width: 760px) {
     top: 90px;
-    right: calc(8% - 6px);
+    right: calc(8% - 11px);
   }
 `;
 
@@ -122,7 +122,7 @@ const ButtonClose = styled.button`
   cursor: pointer;
   width: 40px;
   height: 40px;
-  left: calc(50% + 344px);
+  left: calc(50% + 349px);
   border: none;
   background-color: rgba(0, 0, 0, 0.65);
   opacity: 1;
@@ -154,7 +154,7 @@ const ButtonClose = styled.button`
   }
 
   @media (max-width: 760px) {
-    left: calc(50% + 125px);
+    left: calc(50% + 135px);;
   }
 `;
 

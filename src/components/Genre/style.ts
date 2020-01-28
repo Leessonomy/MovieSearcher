@@ -40,23 +40,22 @@ const GenreList = styled.div`
     cursor: pointer;
   }
   @media (max-width: 767px) {
-    width: 31%;
+    min-width: 32%;
   }
 `;
 const GenresFormsList = styled.label`
   padding: 5px 0;
   padding-left: 40px;
   z-index: -1;
-  width: 100%;
   height: 16px;
   display: inline-block;
   line-height: 16px;
   font-size: 14px;
   vertical-align: middle;
   cursor: pointer;
+  display: flex;
   @media (max-width: 767px) {
     font-size: 10px;
-    width: 74%;
   }
   &:before {
     content: "";
@@ -87,7 +86,7 @@ const GenreName = styled.span`
     height: 2px;
     background-color: #000;
     left: 27%;
-    width: 80%;
+    width: 85%;
     transform: translateY(-50%);
     transition: width 100ms ease-in-out;
   }

@@ -44,6 +44,12 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
     window.removeEventListener("keydown", this.navKeyboard);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   handlerTransition = (type: string) => {
     const { requestMovies, history } = this.props;
     let counterPage = this.state.currentPage;

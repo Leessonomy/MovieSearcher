@@ -4,7 +4,7 @@ import { HomeWrapper } from "./Style";
 
 const HomeLink= () => (
   <HomeWrapper>
-    <Link to={"/best"}>Home Page</Link>
+    <Link to={"/"}>Home Page</Link>
   </HomeWrapper>
 );
 

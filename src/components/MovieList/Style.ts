@@ -15,6 +15,20 @@ const MoviesWrapper = styled.div`
   flex-direction: row;
   @media (max-width: 767px) {
     margin-top: 190px;
+    width: 100%;
+  }
+  @media (min-width: 767px) and (max-width: 1144px) {
+    margin-left: 8%;
+  }
+`;
+
+const MoviesFavoriteWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  @media (max-width: 767px) {
+    width: 100%;
   }
   @media (min-width: 767px) and (max-width: 1144px) {
     margin-left: 8%;
@@ -105,6 +119,7 @@ const Votes = styled.p`
 
 export {
   MoviesWrapper,
+  MoviesFavoriteWrapper,
   MovieCardContainer,
   MovieTitle,
   MainPageContainer,

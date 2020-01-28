@@ -79,8 +79,12 @@ const TitleSimilarMovies = styled.h2`
     width: 100%;
     position: relative;
     left: 0;
-    margin-left: 4%;
     text-align: center;
+  }
+  @media (min-width: 767px) and (max-width: 1359px) {
+    position: static;
+    left: 0
+    margin-left: 0;
   }
 `;
 
@@ -115,7 +119,9 @@ const MovieDescription = styled.div`
 const HeadDescription = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 6%;
+  @media (min-width: 1359px) {
+    margin-left: 6%;
+  }
 `;
 const Title = styled.h1`
   display: inline-block;
@@ -170,32 +176,32 @@ const GalleryTitle = styled.h2`
 `;
 
 const ImagesContainer = styled.div`
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    background-color: #cedade
-    justify-content: center;
-    box-shadow: 0 14px 28px 14px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    padding-bottom: 4px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  background-color: #cedade
+  justify-content: center;
+  box-shadow: 0 14px 28px 14px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  padding-bottom: 4px;
 `;
 
 const SubheadlineInfo = styled.h3`
-display: inline-block
-font-family: JosefinSans, sans-serif;
-font-size: 18px
+  display: inline-block
+  font-family: JosefinSans, sans-serif;
+  font-size: 18px
 `;
 
 const Subheadline = styled.h3`
-display: block
-font-family: JosefinSans, sans-serif;
-margin-bottom: 6px;
+  display: block
+  font-family: JosefinSans, sans-serif;
+  margin-bottom: 6px;
 `;
 const SubheadlineGenres = styled.h3`
-display: block
-font-family: JosefinSans, sans-serif;
-margin-bottom: 16px;
-width: 100%;
-text-align: left
+  display: block
+  font-family: JosefinSans, sans-serif;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: left
 `;
 
 const ButtonShowImage = styled.button`
@@ -204,29 +210,31 @@ const ButtonShowImage = styled.button`
   height: 50px;
 `;
 const BlockInfo = styled.div`
-display: flex;
-flex-flow: row wrap;
-justify-content: space-around;
-margin: 10px 0;
-padding: 5px 10px;
-border: 5px solid #0e6179;
-height: auto;
-margin-top: 18px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 10px 0;
+  padding: 5px 10px;
+  border: 5px solid #0e6179;
+  height: auto;
+  margin-top: 18px;
 @media (max-width: 768px) {
     margin: 24px 0;
 }
 }
 `;
 const GenresName = styled.p`
-margin-left: 5px;
-margin-top: 19px;
-&:hover {
-    color: #c1b8e4fa;
-}
+  margin-left: 5px;
+  margin-top: 19px;
  > a {
     text-decoration: none;
     font-size: 16px;
     color: #151221fc;
+    &:hover {
+      color: #096cd0f0;
+      text-shadow: 0px 4px 13px;
+      font-weight: 700;
+  }
  }
 }
 `;
@@ -259,13 +267,22 @@ const StubGallery = styled.div`
 const StubSimillar = styled.div`
   position: relative;
   top: 48px;
-  left: 59px;
+  left: 61px;
   display: flex;
   justify-content: center;
   font-size: 24px;
   width: 196%;
   border-bottom: 1px solid black;
   font-family: Montserrat, sans-serif;
+  @media (max-width: 768px) {
+    margin-left: 0;
+    left: 0;
+    width: 100%;
+  }
+  @media (min-width: 767px) and (max-width: 1359px) {
+    position: static;
+    left: 0;
+  }
 `;
 
 export {

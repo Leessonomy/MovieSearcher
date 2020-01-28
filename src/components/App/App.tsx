@@ -22,18 +22,21 @@ const CreditsContainer= React.lazy(() => import("../Containers/CreditsContainer"
 interface AppProps {
   location: Location;
   history: any;
+  genresId: string;
   clearGenres: () => void;
 }
 
-const App = ({ clearGenres, location, history }: AppProps & RouteProps) => {
-  if (location.pathname === "/") {
-    history.push('/best')
-  }
+const App = ({ clearGenres, genresId, location, history }: AppProps & RouteProps) => {
   useEffect(() => {
+    if (location.pathname === "/") {
+      history.push('/best')
+    } 
     if (location.pathname !== "/genres") {
+      if(genresId.length > 0)
       clearGenres();
     }
   }, [location.pathname]);
+  
   return (
     <>
     <GlobalStyle />
@@ -61,7 +64,8 @@ const App = ({ clearGenres, location, history }: AppProps & RouteProps) => {
 };
 
 let mapStateToProps = state => ({
-  clearGenres: clearGenres()
+  clearGenres: clearGenres(),
+  genresId: state.movies.genresId
 });
 
 export default withRouter(
