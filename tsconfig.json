@@ -1,12 +1,8 @@
-{ 
- "compilerOptions": {
-  "esModuleInterop": true,
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./src/",
     "outDir": "./build",
     "jsx": "react",
@@ -20,9 +16,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noImplicitAny": false,
+    "noImplicitAny": false
   },
-  "include": [
-    "src"
-],
+  "include": ["src"]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
+import { MoviesWrapper, MainPageContainer, MovieListStub } from "../../MovieList/Style";
 import { connect } from "react-redux";
 import Pagination from "../../Common/Pagination/Pagination";
 import MovieList from "../../MovieList/MovieList";
@@ -125,6 +125,8 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
     });
 
     return (
+      <>
+      {!this.props.movies.length ? <MovieListStub>No result. Please try another search request.</MovieListStub> : (
       <MainPageContainer>
         <MoviesWrapper>{content}</MoviesWrapper>
         {!this.props.isFetching ? <PreloaderMovies /> : null}
@@ -136,9 +138,11 @@ class SearchListContainer extends React.Component<SearchListContainerProps, Stat
             handleNextClick={() => this.handlerTransition("next")}
           />
         ) : (
-          ""
+          null
         )}
       </MainPageContainer>
+      )}
+      </>
     );
   }
 }

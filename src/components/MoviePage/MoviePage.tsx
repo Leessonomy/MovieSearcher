@@ -33,7 +33,7 @@ import { Link, withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 import SimilarMovies from "../SimilarMovies/SimilarMovies";
 import GalleryContainer from "../Containers/GalleryContainer";
-import ROUTES from "../../constants/routes";
+import ROUTES from "../../constants/Routes";
 import stubImage from "../../img/stub-image.png";
 
 interface MoviePageProps {

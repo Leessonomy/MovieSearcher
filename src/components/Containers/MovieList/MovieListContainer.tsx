@@ -115,7 +115,7 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
             handleNextClick={() => this.handlerTransition("next")}
           />
         ) : (
-          ""
+        null
         )}
       </MainPageContainer>
     );

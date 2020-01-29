@@ -1,5 +1,22 @@
 import styled from "styled-components";
 
+const MovieListStub  = styled.div`
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+font-size: 35px;
+font-family: Segoe;
+font-weight: 800;
+@media (max-width: 1024px) {
+  position: absolute;
+  font-size: 18px;
+  height: 100%
+}
+`;
+
+
 const MainPageContainer = styled.div`
   display: flex;
   width: 100%;
@@ -118,6 +135,7 @@ const Votes = styled.p`
 `;
 
 export {
+  MovieListStub,
   MoviesWrapper,
   MoviesFavoriteWrapper,
   MovieCardContainer,

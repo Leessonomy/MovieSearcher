@@ -1,7 +1,7 @@
 import React from "react";
 import { SimilarMovieCard, CardDescription, Overview, Name } from "./Style";
 import { Link } from "react-router-dom";
-import ROUTES from "../../constants/routes";
+import ROUTES from "../../constants/Routes";
 
 const SimilarMovies = ({ imageURL, title, overview, id }) => {
   return (

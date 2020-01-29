@@ -4,7 +4,7 @@ import {
   addGenreSucces
 } from "../../../redux/index";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
-import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
+import { MoviesWrapper, MainPageContainer, MovieListStub } from "../../MovieList/Style";
 import MovieList from "../../MovieList/MovieList";
 import Pagination from "../../Common/Pagination/Pagination";
 import { connect } from "react-redux";
@@ -132,6 +132,8 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
       );
     });
     return (
+      <>
+      {!this.props.movies.length ? <MovieListStub>No result. Please try another search request.</MovieListStub> : (
       <MainPageContainer>
         <MoviesWrapper>{content}</MoviesWrapper>
         {!this.props.isFetching ? <PreloaderMovies /> : null}
@@ -143,9 +145,11 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
             handleNextClick={() => this.handlerTransition("next")}
           />
         ) : (
-          ""
+          null
         )}
       </MainPageContainer>
+      )}
+      </>
     );
   }
 }

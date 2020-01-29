@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { GlobalStyle, MainWrapper, Fallback } from "./Style";
 import { Route, Switch, withRouter } from "react-router-dom";
-import ROUTES from "../../constants/routes";
+import ROUTES from "../../constants/Routes";
 import Header from "../Header/header";
 import MoviesListContainer from "../Containers/MovieList/MovieListContainer";
 import GenreContainer from "../Containers/GenreContainer";

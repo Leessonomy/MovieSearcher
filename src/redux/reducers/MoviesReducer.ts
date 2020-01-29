@@ -1,4 +1,4 @@
-import genres from "../../constants/genreList";
+import genres from "../../constants/GenreList";
 import { ActionType } from "../Actions/ActionType";
 import { StateTypes } from "../StateTypes/StateTypes";
 import * as fromActions from "../Actions/Actions";
