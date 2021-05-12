@@ -224,7 +224,7 @@ const MoviePage = ({
           <TitleSimilarMovies>Similar Movies</TitleSimilarMovies>
           {similarMovies.length > 0 ? (
             similarMovies.map((recommendMovies) => {
-              let sortedOverview =
+              const sortedOverview =
                 recommendMovies.overview.length > 210
                   ? recommendMovies.overview.slice(0, 210) + "..."
                   : recommendMovies.overview;

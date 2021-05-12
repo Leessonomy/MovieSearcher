@@ -15,6 +15,7 @@ width: 81%;
         }
     }
 `;
+
 const CounterFavoriteList = styled.span`
   text-shadow: 0px 0px 2px;
   color: #d4bcbc;

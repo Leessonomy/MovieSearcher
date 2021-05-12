@@ -8,7 +8,7 @@ import GenreContainer from "../Containers/GenreContainer";
 import FavoriteListContainer from "../Containers/MovieList/FavoriteListContainer";
 import ScrollToTopRoute from "../../hoc/ScrollTop";
 import { connect } from "react-redux";
-import { clearGenres } from "../../redux/index";
+import { clearGenres } from "../../store/index";
 import { RouteProps } from "react-router";
 import { AppProps } from "./Types";
 
@@ -83,7 +83,7 @@ const App = ({
   );
 };
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
   clearGenres: clearGenres(),
   genresId: state.movies.genresId,
 });

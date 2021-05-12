@@ -1,9 +1,9 @@
-import genres from "../../constants/GenreList";
+import genres from "../../constants/genreList";
 import { ActionType } from "../Actions/ActionType";
 import { IState } from "../Types/Types";
 import * as fromActions from "../Actions/Actions";
 
-let initialState: IState = {
+const initialState: IState = {
   movie: [],
   movies: [],
   similarMovies: [],
@@ -50,7 +50,7 @@ const moviesReducer = (state = initialState, action: fromActions.Actions) => {
       };
     case ActionType.GET_GENRE:
       const { action: genre } = action;
-      let newGenre = state.genresId.push(genre);
+      const newGenre = state.genresId.push(genre);
       return {
         ...state,
         newGenre,
@@ -59,8 +59,8 @@ const moviesReducer = (state = initialState, action: fromActions.Actions) => {
       };
     case ActionType.DELETE_GENRE: {
       const { action: genre } = action;
-      let index = state.genresId.indexOf(genre);
-      let newGenreDelete = {
+      const index = state.genresId.indexOf(genre);
+      const newGenreDelete = {
         ...state.genresId.splice(index, 1),
       };
       return {

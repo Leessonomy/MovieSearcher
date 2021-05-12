@@ -6,7 +6,7 @@ import {
   MainPageContainer,
   MovieListStub,
 } from "../../MovieList/Style";
-import { requestSearchingMovies, getSearchText } from "../../../redux/index";
+import { requestSearchingMovies, getSearchText } from "../../../store/index";
 import { ISearchListContainerProps, IState } from "./Types";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import Pagination from "../../Common/Pagination/Pagination";

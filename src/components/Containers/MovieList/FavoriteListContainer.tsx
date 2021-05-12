@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getFavorites } from "../../../redux/index";
+import { getFavorites } from "../../../store/index";
 import { IFavoriteListContainerProps } from "./Types";
 import {
   MoviesFavoriteWrapper,

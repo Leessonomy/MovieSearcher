@@ -6,7 +6,7 @@ import {
   requestSimilarMovies,
   requestGallery,
   setIsFetching,
-} from "../../redux/index";
+} from "../../store/index";
 import { IMovieInfo, IMoviePageContainerProps } from "./Types";
 import MoviePage from "../MoviePage/MoviePage";
 import PreloaderMovies from "../Common/Preloader/PreloaderMovies";

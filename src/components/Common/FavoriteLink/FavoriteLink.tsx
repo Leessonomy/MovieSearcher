@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { FavoriteWrapper, CounterFavoriteList } from "./Style";
 import { connect } from "react-redux";
-import { getFavorites } from "../../../redux/index";
+import { FavoriteWrapper, CounterFavoriteList } from "./Style";
+import { getFavorites } from "../../../store/index";
 
 interface FavoriteLinkProps {
   favoriteMovies: {}[];

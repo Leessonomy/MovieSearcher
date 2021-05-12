@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { requestMovies } from "../../../redux/index";
+import { requestMovies } from "../../../store/index";
 import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { IMovieListContainerProps, IState } from "./Types";
 import MovieList from "../../MovieList/MovieList";

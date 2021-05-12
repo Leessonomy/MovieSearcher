@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, RouteProps } from "react-router-dom";
-import { requestSearchingMovies, getSearchText } from "../../redux/index";
+import { requestSearchingMovies, getSearchText } from "../../store/index";
 import { FindField } from "../Header/Style";
 import { ISearchProps } from "./Types";
 
@@ -9,9 +9,8 @@ const SearchContainer = ({
   getSearchText,
   requestSearchingMovies,
   history,
-  location,
 }: ISearchProps & RouteProps) => {
-  let onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const page = 1;
     const query = e.target.value.toLowerCase();
     if (query.length > 0) {

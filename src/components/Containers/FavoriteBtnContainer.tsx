@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { IFavoriteButtonProps } from "./Types";
-import { addFavorites, deleteFavorites, getFavorites } from "../../redux/index";
-import FavoriteBtn from "../common/FavoriteBtn/FavoriteBtn";
+import { addFavorites, deleteFavorites, getFavorites } from "../../store/index";
+import FavoriteBtn from "../Common/FavoriteBtn/FavoriteBtn";
 
 class FavoriteButtonContainer extends React.Component<IFavoriteButtonProps> {
   componentDidUpdate(prevProps) {

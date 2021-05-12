@@ -11,7 +11,7 @@ import {
   addGenreSucces,
   deleteGenreSucces,
   clearGenres,
-} from "../../redux/index";
+} from "../../store/index";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { RouteProps } from "react-router";
@@ -65,7 +65,7 @@ class GenreContainer extends React.Component<IGenresProps & RouteProps> {
   }
 }
 
-let mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
   genresId: state.movies.genresId,
   genres: state.movies.genreList,

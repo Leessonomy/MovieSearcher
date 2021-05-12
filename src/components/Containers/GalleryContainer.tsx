@@ -1,9 +1,9 @@
 import React from "react";
-import Gallery from "../Gallery/Gallery";
 import { connect } from "react-redux";
-import { setIsFetching } from "../../redux/index";
+import { setIsFetching } from "../../store/index";
 import { RouteComponentProps } from "react-router";
 import { IGalleryContainerProps } from "./Types";
+import Gallery from "../Gallery/Gallery";
 
 class GalleryContainer extends React.PureComponent<
   IGalleryContainerProps & RouteComponentProps

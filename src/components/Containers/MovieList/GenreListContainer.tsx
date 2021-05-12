@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import {
   requestSearchingMoviesByGenre,
   addGenreSucces,
-} from "../../../redux/index";
+} from "../../../store/index";
 import MovieList from "../../MovieList/MovieList";
 import Pagination from "../../Common/Pagination/Pagination";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";

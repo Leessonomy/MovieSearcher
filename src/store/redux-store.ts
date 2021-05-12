@@ -2,7 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import moviesReducer from "./Reducers/MoviesReducer";
 
-let reducer = combineReducers({
+const reducer = combineReducers({
   movies: moviesReducer,
 });
 
