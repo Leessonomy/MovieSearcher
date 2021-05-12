@@ -5,11 +5,11 @@ import {
   FieldWrapper,
   ImageWrapper,
   SearchImage,
-  LinksWrapper
+  LinksWrapper,
 } from "./Style";
 import SearchContainer from "../Containers/SearchContainer";
-import FavoriteLink from "../Links&Buttons/FavoriteLink/FavoriteLink";
-import HomeLink from "../Links&Buttons/HomeLink/HomeLink";
+import FavoriteLink from "../common/FavoriteLink/FavoriteLink";
+import HomeLink from "../common/HomeLink/HomeLink";
 import magnifierImg from "../../img/search.svg";
 
 const Header = () => (

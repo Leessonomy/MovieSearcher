@@ -12,24 +12,11 @@ import {
 import PreloaderGallery from "../Common/Preloader/PreloaderGallery";
 import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
+import { IGalleryProps, IState } from "./Types";
 
-interface GalleryProps {
-  match: any;
-  imageURL: string;
-  galleryDesktop: string[];
-  galleryMobile: string[];
-  order: number;
-}
-
-interface GalleryState {
-  isOpen: boolean;
-  loaded: boolean;
-  indexImage: number;
-}
-
-class Gallery extends React.PureComponent<
-  RouteComponentProps & GalleryProps,
-  GalleryState
+class Gallery extends React.Component<
+  RouteComponentProps & IGalleryProps,
+  IState
 > {
   constructor(props) {
     super(props);
@@ -42,7 +29,9 @@ class Gallery extends React.PureComponent<
 
   handlerClickOpen = (e: React.MouseEvent) => {
     const { history, match } = this.props;
-    const gettingIndex = (e.currentTarget as HTMLElement).getAttribute("data-index");
+    const gettingIndex = (e.currentTarget as HTMLElement).getAttribute(
+      "data-index"
+    );
     const convertedIndex = Number(gettingIndex);
 
     this.setState({ indexImage: convertedIndex }, () => {
@@ -53,16 +42,22 @@ class Gallery extends React.PureComponent<
     history.push(`/movie/${match.params.id}?image=${convertedIndex}`);
   };
 
-  handlerTransition: React.MouseEventHandler = (e: any) => {
+  handlerTransition = (e: React.MouseEvent) => {
     const { history, match } = this.props;
     let counterImage = this.state.indexImage;
-    if (e.currentTarget.dataset.direction === "next") {
+    if ((e.currentTarget as HTMLElement).dataset.direction === "next") {
       ++counterImage;
-    } else if (e.currentTarget.dataset.direction === "prev") {
+    } else if ((e.currentTarget as HTMLElement).dataset.direction === "prev") {
       --counterImage;
     }
     this.setState({ indexImage: counterImage }, () => {
       history.push(`/movie/${match.params.id}?image=${this.state.indexImage}`);
+    });
+  };
+
+  openImage = () => {
+    this.setState({
+      isOpen: true,
     });
   };
 
@@ -76,12 +71,6 @@ class Gallery extends React.PureComponent<
         history.push(`/movie/${match.params.id}`);
       }
     );
-  };
-
-  openImage = () => {
-    this.setState({
-      isOpen: true,
-    });
   };
 
   loadImage = () => {

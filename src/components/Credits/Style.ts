@@ -77,12 +77,12 @@ const CastWrapper = styled.div`
 `;
 
 const BackLink = styled.a`
-font-size: 18px;
-cursor: pointer;
-font-weight: 800;
-color: #0c8bd6eb;
-border-bottom: 1px solid #0c8bd6eb;
-`
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #0c8bd6eb;
+  border-bottom: 1px solid #0c8bd6eb;
+`;
 
 export {
   CastPerson,
@@ -100,5 +100,5 @@ export {
   NameCrewDepartment,
   CrewWrapper,
   CastWrapper,
-  BackLink
+  BackLink,
 };

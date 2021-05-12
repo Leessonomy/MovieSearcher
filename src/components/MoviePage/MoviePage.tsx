@@ -26,7 +26,7 @@ import {
   ImageWrapper,
   TitleSimilarMovies,
   StubGallery,
-  StubSimillar
+  StubSimilar,
 } from "./Style";
 import FavoriteBtn from "../Containers/FavoriteBtnContainer";
 import { Link, withRouter } from "react-router-dom";
@@ -35,26 +35,7 @@ import SimilarMovies from "../SimilarMovies/SimilarMovies";
 import GalleryContainer from "../Containers/GalleryContainer";
 import ROUTES from "../../constants/routes";
 import stubImage from "../../img/stub-image.png";
-
-interface MoviePageProps {
-  match: any;
-  productionCompanies: any[];
-  spokenLanguages: any[];
-  genres: any[];
-  imageURL: string;
-  budget: string;
-  title: string;
-  tagline: string;
-  runtime: string;
-  raiting: string;
-  status: string;
-  release: string;
-  votes: string;
-  popularity: string;
-  overview: string;
-  similarMovies: any[];
-  gallery: any[];
-} 
+import { IMoviePageProps } from "./Types";
 
 const MoviePage = ({
   match,
@@ -73,8 +54,8 @@ const MoviePage = ({
   popularity,
   overview,
   similarMovies,
-  gallery
-}: MoviePageProps & RouteComponentProps) => {
+  gallery,
+}: IMoviePageProps & RouteComponentProps) => {
   const id = match.params.id;
   return (
     <MoviePageWrapper>
@@ -83,24 +64,37 @@ const MoviePage = ({
           <Title>{title || "Not Available"}</Title>
           <ImageWrapper>
             {imageURL ? (
-            <img style={{ marginTop: "6px", boxShadow: "0 0 12px 0 #ccb68b", width: "inherit", borderRadius: "8px", height: "auto" }}
-              src={`https://image.tmdb.org/t/p/w342${imageURL}`}
-            />
+              <img
+                style={{
+                  marginTop: "6px",
+                  boxShadow: "0 0 12px 0 #ccb68b",
+                  width: "inherit",
+                  borderRadius: "8px",
+                  height: "auto",
+                }}
+                src={`https://image.tmdb.org/t/p/w342${imageURL}`}
+              />
             ) : (
-            <img style={{ marginTop: "6px", borderRadius: "8px", height: "auto", width: "342px" }} src={stubImage} />
-            )
-}
+              <img
+                style={{
+                  marginTop: "6px",
+                  borderRadius: "8px",
+                  height: "auto",
+                  width: "342px",
+                }}
+                src={stubImage}
+              />
+            )}
           </ImageWrapper>
 
           <FavoriteBtn
             key={id}
             id={id}
             imageURL={imageURL}
-            overwiev={overview}
+            overview={overview}
             raiting={raiting}
             title={title}
           />
-          
         </MoviePagePoster>
         <MovieDescription>
           <HeadDescription>
@@ -146,8 +140,10 @@ const MoviePage = ({
               <InfoField>
                 <SubheadlineInfo>Language:</SubheadlineInfo>
                 {spokenLanguages &&
-                  spokenLanguages.map((lang: any, index: number) => {
-                    return <span key={index}>{lang.name || "Not Available"}</span>;
+                  spokenLanguages.map((lang, index) => {
+                    return (
+                      <span key={index}>{lang.name || "Not Available"}</span>
+                    );
                   })}
               </InfoField>
             </BlockInfo>
@@ -159,10 +155,12 @@ const MoviePage = ({
             <GenreList>
               <Subheadline>Genres:</Subheadline>
               {genres &&
-                genres.map(genre => {
+                genres.map((genre) => {
                   return (
                     <GenresName key={genre.id}>
-                      <Link to={`/genres?=${genre.id}`}>{genre.name || "Not Available"}</Link>
+                      <Link to={`/genres?=${genre.id}`}>
+                        {genre.name || "Not Available"}
+                      </Link>
                     </GenresName>
                   );
                 })}
@@ -171,7 +169,7 @@ const MoviePage = ({
               <SubheadlineGenres>Product Companies:</SubheadlineGenres>
               <CompaniesWrapper>
                 {productionCompanies &&
-                  productionCompanies.map((prod: any, index: number) => {
+                  productionCompanies.map((prod, index) => {
                     if (prod.logo_path === null) {
                       return (
                         <CompanyProducer key={index}>
@@ -189,7 +187,8 @@ const MoviePage = ({
                               style={{ display: "block" }}
                               media="(min-width: 760px)"
                             />
-                            <img src={`https://image.tmdb.org/t/p/w45${prod.logo_path}`}
+                            <img
+                              src={`https://image.tmdb.org/t/p/w45${prod.logo_path}`}
                               style={{ display: "block" }}
                             />
                           </picture>
@@ -203,7 +202,7 @@ const MoviePage = ({
               <GalleryTitle>Poster Gallery:</GalleryTitle>
               {gallery.length > 0 ? (
                 <ImagesContainer>
-                  {gallery.map((galleryImg: any, index: number) => {
+                  {gallery.map((galleryImg, index) => {
                     return (
                       <GalleryContainer
                         key={index}
@@ -222,9 +221,9 @@ const MoviePage = ({
         </MovieDescription>
 
         <SimilarMoviesWrapper>
-          <TitleSimilarMovies>Simillar Movies</TitleSimilarMovies>
+          <TitleSimilarMovies>Similar Movies</TitleSimilarMovies>
           {similarMovies.length > 0 ? (
-            similarMovies.map((recommendMovies: any) => {
+            similarMovies.map((recommendMovies) => {
               let sortedOverview =
                 recommendMovies.overview.length > 210
                   ? recommendMovies.overview.slice(0, 210) + "..."
@@ -240,7 +239,7 @@ const MoviePage = ({
               );
             })
           ) : (
-            <StubSimillar>Not Available</StubSimillar>
+            <StubSimilar>Not Available</StubSimilar>
           )}
         </SimilarMoviesWrapper>
       </MoviePageContainer>

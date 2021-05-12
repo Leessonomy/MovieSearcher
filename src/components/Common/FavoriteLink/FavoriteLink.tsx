@@ -21,9 +21,9 @@ const FavoriteLink = ({ favoriteMovies, getFavorites }: FavoriteLinkProps) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   favoriteMovies: state.movies.favoriteMovies,
-  getFavorites: getFavorites()
+  getFavorites: getFavorites(),
 });
 
 export default withRouter(

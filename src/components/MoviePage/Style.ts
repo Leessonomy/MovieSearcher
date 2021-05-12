@@ -264,7 +264,7 @@ const StubGallery = styled.div`
   font-size: 26px;
   font-family: Montserrat, sans-serif;
 `;
-const StubSimillar = styled.div`
+const StubSimilar = styled.div`
   position: relative;
   top: 48px;
   left: 61px;
@@ -313,5 +313,5 @@ export {
   TitleSimilarMovies,
   ImageWrapper,
   StubGallery,
-  StubSimillar,
+  StubSimilar,
 };

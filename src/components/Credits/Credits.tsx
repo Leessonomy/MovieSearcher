@@ -15,15 +15,14 @@ import {
   NameCrewDepartment,
   CastWrapper,
   CrewWrapper,
-  BackLink
+  BackLink,
 } from "./Style";
+import { ICreditsProps } from "./Types";
 
-const CastInfo = ({ cast, crew, history }) => {
+const CastInfo = ({ cast, crew, history }: ICreditsProps) => {
   return (
     <CreditsContainer>
-      <BackLink onClick={history.goBack}>
-        Return to Movie Page
-      </BackLink>
+      <BackLink onClick={history.goBack}>Return to Movie Page</BackLink>
       <h2>Cast:</h2>
       <CastWrapper>
         <CharacterCastTitle>Character:</CharacterCastTitle>

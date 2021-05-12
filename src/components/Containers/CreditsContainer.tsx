@@ -1,23 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import CastInfo from "../Credits/Credits";
-import { History } from "history";
 import { withRouter } from "react-router-dom";
+import { ICastInfoContainerProps } from "./Types";
+import CastInfo from "../Credits/Credits";
 
-interface CastInfoContainerProps {
-  credits: any;
-  history: History;
-}
-class CastInfoContainer extends React.Component<CastInfoContainerProps> {
+class CastInfoContainer extends React.Component<ICastInfoContainerProps> {
   render() {
     return (
-      <CastInfo history={this.props.history} cast={this.props.credits.cast} crew={this.props.credits.crew} />
+      <CastInfo
+        history={this.props.history}
+        cast={this.props.credits.cast}
+        crew={this.props.credits.crew}
+      />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  credits: state.movies.movie.credits
+  credits: state.movies.movie.credits,
 });
 
 export default withRouter(connect(mapStateToProps)(CastInfoContainer));

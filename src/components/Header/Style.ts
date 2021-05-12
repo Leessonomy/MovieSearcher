@@ -64,5 +64,5 @@ export {
   FindField,
   ImageWrapper,
   LinksWrapper,
-  SearchImage
+  SearchImage,
 };

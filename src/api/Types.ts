@@ -1,4 +1,4 @@
-export type MoviesResponse = {
+export interface MoviesResponse {
   page: number;
   total_results: number;
   total_pages: number;
@@ -21,9 +21,9 @@ export type MoviesResponse = {
       release_date: string;
     }
   ];
-};
+}
 
-export type PageResponse = {
+export interface PageResponse {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: number;
@@ -50,9 +50,9 @@ export type PageResponse = {
   vote_average: number;
   vote_count: number;
   credits: object;
-};
+}
 
-export type SimilarResponse = {
+export interface SimilarResponse {
   page: number;
   total_results: number;
   total_pages: number;
@@ -75,9 +75,9 @@ export type SimilarResponse = {
       popularity: number;
     }
   ];
-};
+}
 
-export type Gallery = {
+export interface GalleryResponse {
   backdrops: [
     {
       aspect_ratio: number;
@@ -89,4 +89,4 @@ export type Gallery = {
       width: number;
     }
   ];
-};
+}

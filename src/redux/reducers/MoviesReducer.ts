@@ -1,9 +1,9 @@
 import genres from "../../constants/GenreList";
 import { ActionType } from "../Actions/ActionType";
-import { StateTypes } from "../StateTypes/StateTypes";
+import { IState } from "../Types/Types";
 import * as fromActions from "../Actions/Actions";
 
-let initialState: StateTypes = {
+let initialState: IState = {
   movie: [],
   movies: [],
   similarMovies: [],

@@ -1,34 +1,20 @@
 import React from "react";
-import MoviePage from "../MoviePage/MoviePage";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
   requestMoviePage,
   requestSimilarMovies,
   requestGallery,
   setIsFetching,
 } from "../../redux/index";
-import { withRouter } from "react-router-dom";
+import { IMovieInfo, IMoviePageContainerProps } from "./Types";
+import MoviePage from "../MoviePage/MoviePage";
 import PreloaderMovies from "../Common/Preloader/PreloaderMovies";
 
-interface MoviePageContainerProps {
-  movie: object;
-  gallery: object[];
-  isFetching: boolean;
-  match: any;
-  similarMovies: object[];
-  requestMoviePage: (id: number) => void;
-  requestSimilarMovies: (id: number) => void;
-  requestGallery: (id: number) => void;
-}
-
-class MoviePageContainer extends React.Component<MoviePageContainerProps> {
+class MoviePageContainer extends React.Component<IMoviePageContainerProps> {
   componentDidMount() {
-    const {
-      requestMoviePage,
-      requestSimilarMovies,
-      requestGallery,
-      match,
-    } = this.props;
+    const { requestMoviePage, requestSimilarMovies, requestGallery, match } =
+      this.props;
     requestMoviePage(match.params.id);
     requestSimilarMovies(match.params.id);
     requestGallery(match.params.id);
@@ -36,7 +22,7 @@ class MoviePageContainer extends React.Component<MoviePageContainerProps> {
 
   render() {
     const { movie, similarMovies, gallery } = this.props;
-    return [movie].map((data: any, index: number) => {
+    return Array(movie).map((data: IMovieInfo, index) => {
       return (
         <>
           {!this.props.isFetching ? <PreloaderMovies /> : null}
@@ -50,14 +36,14 @@ class MoviePageContainer extends React.Component<MoviePageContainerProps> {
             votes={data.vote_count}
             popularity={data.popularity}
             overview={data.overview}
-            similarMovies={similarMovies}
-            gallery={gallery}
             budget={data.budget}
             runtime={data.runtime}
             status={data.status}
             genres={data.genres}
             productionCompanies={data.production_companies}
             spokenLanguages={data.spoken_languages}
+            similarMovies={similarMovies}
+            gallery={gallery}
           />
         </>
       );

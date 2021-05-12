@@ -2,7 +2,12 @@ import { movieAPI } from "../../api/Api";
 import * as fromActions from "../Actions/Actions";
 import { ThunkAction } from "redux-thunk";
 
-type ThunkType = ThunkAction<Promise<void>, fromActions.Actions, unknown, fromActions.Actions>;
+type ThunkType = ThunkAction<
+  Promise<void>,
+  fromActions.Actions,
+  unknown,
+  fromActions.Actions
+>;
 
 export const requestMoviePage = (id: number): ThunkType => {
   return async (dispatch) => {

@@ -8,7 +8,7 @@ const PreloaderImage = styled.div`
   top: 50%;
   left: 50%;
   right: 50%;
-  bottom: 50%
+  bottom: 50%;
 `;
 
 const PreloaderWrapper = styled.div`

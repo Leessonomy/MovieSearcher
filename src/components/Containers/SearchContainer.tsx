@@ -1,40 +1,16 @@
-import React, { useEffect, useRef } from "react";
-import { FindField } from "../Header/Style";
-import { requestSearchingMovies, getSearchText } from "../../redux/index";
+import React from "react";
 import { connect } from "react-redux";
 import { withRouter, RouteProps } from "react-router-dom";
-import { History } from "history";
-
-interface SearchProps {
-  text: string;
-  history: History;
-  location: object;
-  getSearchText: (value: string) => void;
-  requestSearchingMovies: (page: number, text: string) => void;
-}
+import { requestSearchingMovies, getSearchText } from "../../redux/index";
+import { FindField } from "../Header/Style";
+import { ISearchProps } from "./Types";
 
 const SearchContainer = ({
   getSearchText,
   requestSearchingMovies,
   history,
   location,
-}: SearchProps & RouteProps) => {
-  const mounted = useRef<boolean>(false);
-
-  useEffect(() => {
-    let el = document.querySelector("header")!;
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
-      if (location.pathname.slice(0, 7) == "/movie/") {
-        el.style.position = "static";
-      }
-      if (location.pathname == "/" || "best") {
-        el.style.position = "sticky";
-      }
-    }
-  });
-
+}: ISearchProps & RouteProps) => {
   let onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const page = 1;
     const query = e.target.value.toLowerCase();

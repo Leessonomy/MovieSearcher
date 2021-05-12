@@ -1,34 +1,24 @@
 import React from "react";
-import MovieList from "../../MovieList/MovieList";
-import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { requestMovies } from "../../../redux/index";
+import { MoviesWrapper, MainPageContainer } from "../../MovieList/Style";
+import { IMovieListContainerProps, IState } from "./Types";
+import MovieList from "../../MovieList/MovieList";
 import Pagination from "../../Common/Pagination/Pagination";
 import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
-import { withRouter } from "react-router-dom";
-import { Location, History } from "history";
-import Movie from "./MovieType";
 
-interface MoviesContainerProps {
-  location: Location;
-  history: History;
-  totalPages: number;
-  isFetching: boolean;
-  movies: [];
-  requestMovies: (page: number) => void;
-}
-
-interface StateType {
-  currentPage: number;
-}
-
-class MoviesListContainer extends React.Component<MoviesContainerProps, StateType> {
+class MoviesListContainer extends React.Component<
+  IMovieListContainerProps,
+  IState
+> {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 1
+      currentPage: 1,
     };
   }
+
   componentDidMount() {
     const { requestMovies, location } = this.props;
     window.addEventListener("keydown", this.navKeyboard);
@@ -85,25 +75,25 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
   };
 
   render() {
-    const { movies, isFetching, totalPages  } = this.props;
+    const { movies, isFetching, totalPages } = this.props;
     const { currentPage } = this.state;
-    const content = movies.map((movie: Movie) => {
+    const content = movies.map((movie) => {
       const sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
           : movie.overview;
-      const sortedTitle = 
-      movie.title.length > 34
-      ? movie.title.slice(0, 34) + "..."
-      : movie.title;
+      const sortedTitle =
+        movie.title.length > 34
+          ? movie.title.slice(0, 34) + "..."
+          : movie.title;
       return (
         <MovieList
           key={movie.id}
           title={sortedTitle}
           id={movie.id}
-          imageUrl={movie.poster_path}
+          imageURL={movie.poster_path}
           overview={sortedOverview}
-          votes={movie.vote_average}
+          raiting={movie.vote_average}
         />
       );
     });
@@ -119,9 +109,7 @@ class MoviesListContainer extends React.Component<MoviesContainerProps, StateTyp
             handlePrevClick={() => this.handlerTransition("prev")}
             handleNextClick={() => this.handlerTransition("next")}
           />
-        ) : (
-        null
-        )}
+        ) : null}
       </MainPageContainer>
     );
   }
@@ -131,7 +119,7 @@ const mapStateToProps = (state) => ({
   movies: state.movies.movies,
   totalPages: state.movies.totalPages,
   isFetching: state.movies.isFetching,
-  requestMovies: requestMovies(state)
+  requestMovies: requestMovies(state),
 });
 
 export default withRouter(

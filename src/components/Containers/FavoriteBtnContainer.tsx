@@ -1,28 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { IFavoriteButtonProps } from "./Types";
 import { addFavorites, deleteFavorites, getFavorites } from "../../redux/index";
-import FavoriteBtn from "../Links&Buttons/FavoriteBtn/FavoriteBtn";
+import FavoriteBtn from "../common/FavoriteBtn/FavoriteBtn";
 
-interface FavoriteButtonProps {
-  id: string;
-  imageURL: string;
-  raiting: number;
-  title: string;
-  overwiev: string;
-  favoriteMovies: [];
-  addFavorites: (movieListPages: object) => void;
-  deleteFavorites: (id: string) => void;
-}
-
-interface Favorite {
-  id: string;
-  imageURL: string;
-  raiting: number;
-  title: string;
-  overwiev: string;
-}
-
-class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
+class FavoriteButtonContainer extends React.Component<IFavoriteButtonProps> {
   componentDidUpdate(prevProps) {
     if (this.props.favoriteMovies !== prevProps.favoriteMovies) {
       localStorage.setItem(
@@ -35,28 +17,32 @@ class FavoriteButtonContainer extends React.Component<FavoriteButtonProps> {
   checked() {
     const { favoriteMovies } = this.props;
     if (this.props.favoriteMovies.length > 0) {
-      return favoriteMovies.find((favorite: Favorite) => favorite.id === this.props.id);
+      return favoriteMovies.find((favorite) => favorite.id === this.props.id);
     }
     return false;
   }
 
   handlerClick = () => {
     const { addFavorites, deleteFavorites } = this.props;
+
     const sortedOverview =
-      this.props.overwiev.length > 360
-        ? this.props.overwiev.slice(0, 360) + "..."
-        : this.props.overwiev;
+      this.props.overview.length > 360
+        ? this.props.overview.slice(0, 360) + "..."
+        : this.props.overview;
+
     const sortedTitle =
       this.props.title.length > 34
         ? this.props.title.slice(0, 34) + "..."
         : this.props.title;
+
     const movieListPages = {
       id: this.props.id,
       imageURL: this.props.imageURL,
       raiting: this.props.raiting,
       title: sortedTitle,
-      overwiev: sortedOverview,
+      overview: sortedOverview,
     };
+
     if (!this.checked()) {
       addFavorites(movieListPages);
     } else {

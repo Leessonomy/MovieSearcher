@@ -1,47 +1,36 @@
 import React from "react";
-import {
-  requestSearchingMoviesByGenre,
-  addGenreSucces
-} from "../../../redux/index";
-import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
-import { MoviesWrapper, MainPageContainer, MovieListStub } from "../../MovieList/Style";
-import MovieList from "../../MovieList/MovieList";
-import Pagination from "../../Common/Pagination/Pagination";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Location, History } from "history";
-import Movie from "./MovieType";
+import {
+  requestSearchingMoviesByGenre,
+  addGenreSucces,
+} from "../../../redux/index";
+import MovieList from "../../MovieList/MovieList";
+import Pagination from "../../Common/Pagination/Pagination";
+import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
+import { IGenreListContainerProps, IState } from "./Types";
+import {
+  MoviesWrapper,
+  MainPageContainer,
+  MovieListStub,
+} from "../../MovieList/Style";
 
-interface GenreListContainerProps {
-  location: Location;
-  history: History;
-  genresId: number[];
-  totalPages: number;
-  isFetching: boolean;
-  movies: [];
-  requestSearchingMoviesByGenre: (page: number, genresId: number[]) => void;
-  addGenreSucces: (convertedId: number[]) => void;
-}
-
-interface StateType {
-  currentPage: number;
-}
-
-class GenreListContainer extends React.Component<GenreListContainerProps, StateType> {
+class GenreListContainer extends React.Component<
+  IGenreListContainerProps,
+  IState
+> {
   static initialState = {
-    currentPage: 1
+    currentPage: 1,
   };
+
   constructor(props) {
     super(props);
     this.state = GenreListContainer.initialState;
   }
 
   componentDidMount() {
-    const {
-      requestSearchingMoviesByGenre,
-      addGenreSucces,
-      location
-    } = this.props;
+    const { requestSearchingMoviesByGenre, addGenreSucces, location } =
+      this.props;
     window.addEventListener("keydown", this.navKeyboard);
 
     const id = location.search.split("=")[1].split("/")[0];
@@ -78,11 +67,7 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
   }
 
   handlerTransition = (type: string) => {
-    const { 
-      requestSearchingMoviesByGenre, 
-      history, 
-      genresId 
-    } = this.props;
+    const { requestSearchingMoviesByGenre, history, genresId } = this.props;
     let counterPage = this.state.currentPage;
 
     if (type === "next") {
@@ -113,14 +98,15 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
     return false;
   };
   render() {
-    const { movies, isFetching, totalPages  } = this.props;
+    const { movies, isFetching, totalPages } = this.props;
     const { currentPage } = this.state;
-    const content = movies.map((movie: Movie) => {
+
+    const content = movies.map((movie) => {
       const sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
           : movie.overview;
-      const sortedTitle = 
+      const sortedTitle =
         movie.title.length > 34
           ? movie.title.slice(0, 34) + "..."
           : movie.title;
@@ -129,30 +115,32 @@ class GenreListContainer extends React.Component<GenreListContainerProps, StateT
           key={movie.id}
           title={sortedTitle}
           id={movie.id}
-          imageUrl={movie.poster_path}
+          imageURL={movie.poster_path}
           overview={sortedOverview}
-          votes={movie.vote_average}
+          raiting={movie.vote_average}
         />
       );
     });
     return (
       <>
-      {!movies.length ? <MovieListStub>No result. Please try another search request.</MovieListStub> : (
-      <MainPageContainer>
-        <MoviesWrapper>{content}</MoviesWrapper>
-        {!isFetching ? <PreloaderMovies /> : null}
-        {totalPages > 1 ? (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            handlePrevClick={() => this.handlerTransition("prev")}
-            handleNextClick={() => this.handlerTransition("next")}
-          />
+        {!movies.length ? (
+          <MovieListStub>
+            No result. Please try another search request.
+          </MovieListStub>
         ) : (
-          null
+          <MainPageContainer>
+            <MoviesWrapper>{content}</MoviesWrapper>
+            {!isFetching ? <PreloaderMovies /> : null}
+            {totalPages > 1 ? (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                handlePrevClick={() => this.handlerTransition("prev")}
+                handleNextClick={() => this.handlerTransition("next")}
+              />
+            ) : null}
+          </MainPageContainer>
         )}
-      </MainPageContainer>
-      )}
       </>
     );
   }
@@ -164,12 +152,12 @@ const mapStateToProps = (state) => ({
   genresId: state.movies.genresId,
   isFetching: state.movies.isFetching,
   addGenreSucces: addGenreSucces(state),
-  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state)
+  requestSearchingMoviesByGenre: requestSearchingMoviesByGenre(state),
 });
 
 export default withRouter(
   connect(mapStateToProps, {
     requestSearchingMoviesByGenre: requestSearchingMoviesByGenre,
-    addGenreSucces: addGenreSucces
+    addGenreSucces: addGenreSucces,
   })(GenreListContainer)
 );

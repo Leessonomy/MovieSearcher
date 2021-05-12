@@ -1,15 +1,14 @@
 import React from "react";
-import MovieList from "../../MovieList/MovieList";
-import { MoviesFavoriteWrapper, MainPageContainer } from "../../MovieList/Style";
-import { getFavorites } from "../../../redux/index";
 import { connect } from "react-redux";
-import Movie from './MovieType'
-interface FavoriteListContainerProps {
-  favoriteMovies: [];
-  getFavorites: () => void;
-}
+import { getFavorites } from "../../../redux/index";
+import { IFavoriteListContainerProps } from "./Types";
+import {
+  MoviesFavoriteWrapper,
+  MainPageContainer,
+} from "../../MovieList/Style";
+import MovieList from "../../MovieList/MovieList";
 
-class FavoriteListContainer extends React.Component<FavoriteListContainerProps> {
+class FavoriteListContainer extends React.Component<IFavoriteListContainerProps> {
   componentDidMount() {
     const { getFavorites } = this.props;
     getFavorites();
@@ -17,15 +16,15 @@ class FavoriteListContainer extends React.Component<FavoriteListContainerProps> 
 
   render() {
     const { favoriteMovies } = this.props;
-    const content = favoriteMovies.map((movie: Movie) => {
+    const content = favoriteMovies.map((movie) => {
       return (
         <MovieList
           key={movie.id}
           title={movie.title}
           id={movie.id}
-          imageUrl={movie.imageURL}
-          overview={movie.overwiev}
-          votes={movie.raiting}
+          imageURL={movie.imageURL}
+          overview={movie.overview}
+          raiting={movie.raiting}
         />
       );
     });
@@ -39,7 +38,7 @@ class FavoriteListContainer extends React.Component<FavoriteListContainerProps> 
 
 const mapStateToProps = (state) => ({
   favoriteMovies: state.movies.favoriteMovies,
-  getFavorites: getFavorites()
+  getFavorites: getFavorites(),
 });
 
 export default connect(mapStateToProps, { getFavorites })(

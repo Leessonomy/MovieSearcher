@@ -1,4 +1,4 @@
-export interface StateTypes {
+export interface IState {
   movie: [];
   movies: [];
   similarMovies: [];

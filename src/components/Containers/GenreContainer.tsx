@@ -6,35 +6,18 @@ import {
   GenresFormsList,
   GenreName,
 } from "../Genre/Style";
-import { connect } from "react-redux";
 import {
   requestSearchingMoviesByGenre,
   addGenreSucces,
   deleteGenreSucces,
   clearGenres,
 } from "../../redux/index";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { RouteProps } from "react-router";
-import { Location, History } from "history";
+import { IGenresProps } from "./Types";
 
-interface GenresProps {
-  genresId: string;
-  genres: [];
-  genreList: string;
-  history: History;
-  location: Location;
-  addGenreSucces: (selected: string) => void;
-  deleteGenreSucces: (selected: string) => void;
-  requestSearchingMoviesByGenre: (page: number, genresId: string) => void;
-}
-
-interface Genre {
-  id: number;
-  name: string;
-  active: boolean;
-}
-
-class GenreContainer extends React.Component<GenresProps & RouteProps> {
+class GenreContainer extends React.Component<IGenresProps & RouteProps> {
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       addGenreSucces,
@@ -64,7 +47,7 @@ class GenreContainer extends React.Component<GenresProps & RouteProps> {
 
   render() {
     const { genres } = this.props;
-    const genreList = genres.map((genre: Genre) => (
+    const genreList = genres.map((genre) => (
       <GenreList key={genre.name}>
         <Genre
           onChange={this.handleChange}

@@ -1,40 +1,25 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
   MoviesWrapper,
   MainPageContainer,
   MovieListStub,
 } from "../../MovieList/Style";
-import { connect } from "react-redux";
+import { requestSearchingMovies, getSearchText } from "../../../redux/index";
+import { ISearchListContainerProps, IState } from "./Types";
+import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
 import Pagination from "../../Common/Pagination/Pagination";
 import MovieList from "../../MovieList/MovieList";
-import { requestSearchingMovies, getSearchText } from "../../../redux/index";
-import { withRouter } from "react-router-dom";
-import PreloaderMovies from "../../Common/Preloader/PreloaderMovies";
-import { Location, History } from "history";
-import Movie from "./MovieType";
-
-interface SearchListContainerProps {
-  history: History;
-  location: Location;
-  text: string;
-  totalPages: number;
-  isFetching: boolean;
-  movies: [];
-  requestSearchingMovies: (currentPage: number, text: string) => void;
-  getSearchText: (query: string) => void;
-}
-
-interface StateType {
-  currentPage: number;
-}
 
 class SearchListContainer extends React.Component<
-  SearchListContainerProps,
-  StateType
+  ISearchListContainerProps,
+  IState
 > {
-  static initialState: StateType = {
+  static initialState = {
     currentPage: 1,
   };
+
   constructor(props) {
     super(props);
     this.state = SearchListContainer.initialState;
@@ -108,7 +93,7 @@ class SearchListContainer extends React.Component<
   render() {
     const { movies, isFetching, totalPages } = this.props;
     const { currentPage } = this.state;
-    const content = movies.map((movie: Movie) => {
+    const content = movies.map((movie) => {
       const sortedOverview =
         movie.overview.length > 360
           ? movie.overview.slice(0, 360) + "..."
@@ -122,9 +107,9 @@ class SearchListContainer extends React.Component<
           key={movie.id}
           title={sortedTitle}
           id={movie.id}
-          imageUrl={movie.poster_path}
+          imageURL={movie.poster_path}
           overview={sortedOverview}
-          votes={movie.vote_average}
+          raiting={movie.vote_average}
         />
       );
     });
